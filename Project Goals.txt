@@ -1,0 +1,39 @@
+Create a pokemon 
+This pokemon should have a level 
+The level* base stats = stats 
+Level is between 70-100 
+4 pokemon 
+Venasuor 
+Charizard 
+Blastoise 
+Pikachu 
+
+Create moves adds the moves into memory and returns a table of moves 
+
+Create a pokemon by picking it's level 
+Inputting it's base stats 
+And adding 4 moves 
+4 moves can be any random 3 of it's type 
+And one non type move 
+
+Battle sequence: 
+First choose a pokemon. 
+Then computer chooses a random pokemon to fight you 
+
+Create a table that defines type advantage 
+Hash map? Such as fire > grass... 
+
+Loop:
+Exchange blows untill HP is at 0 
+If move of same type do 1.25 times damage of move
+If move super effective do 2 times damage of move 
+If move not very effective do .5 times damage of move 
+
+Damage = (( (2*level)/5 + 2)  * power *(a/d))/50 +2 ) * modifier 
+
+
+Added touches: 
+Stat modifiers 
+" Sprites "
+144 pokemon 
+If you survive keep playing 
