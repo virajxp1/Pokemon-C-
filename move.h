@@ -8,7 +8,7 @@
 #include <vector>
 using namespace std;
 
-typedef enum {Grass,Fire,Water,Electric,Poison,Normal,Flying};
+typedef enum type {Grass,Fire,Water,Electric,Poison,Normal,Flying} Type;
 
 class pkmn_move {
     int type;
@@ -18,6 +18,12 @@ class pkmn_move {
     string name;
 public:
     pkmn_move(int t,int damage,string n,int acc, int num);
+    int move_type(){return type;}
+    int move_power(){return power;}
+    int move_accuracy(){return accuracy;}
+    int move_pp(){return pp;}
+    void move_use() {pp--;}
+    string move_name(){return name;}
 };
 
 vector<vector<pkmn_move>> create_moves();

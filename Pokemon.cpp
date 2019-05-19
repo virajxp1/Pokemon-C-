@@ -14,3 +14,26 @@ Pokemon :: Pokemon(string& pkmn, pkmn_move& move1, pkmn_move& move2, pkmn_move& 
     type = _type;
     type2 = _type2;
 }
+
+bool choose_pokemon(Pokemon& mypkmn){
+    cout<<"Choose your Pokemon: \n";
+    cout<<"1. Venusaur"<< endl <<
+          "2. Charizard" << endl<<
+          "3. Blastoise" << endl<<
+          "4. Pikachu" << endl;
+    string name;
+    cin>>name;
+    for(int i = 0; i<name.length();i++){
+        if(islower(name[i])){
+            name[i] = toupper(name[i]);
+        }
+    }
+    if(name == "CHARIZARD"){
+        cout<<"You Chose Charizard";
+        return true;
+    }
+    else{
+        cout<<"Sorry that is not a valid input try again" << endl;
+        return false;
+    }
+}

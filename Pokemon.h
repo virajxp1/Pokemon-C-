@@ -13,15 +13,17 @@ class Pokemon {
     vector <pkmn_move> moves;
     int type;
     int type2;
-
-    int health;
-    int attack;
-    int defence;
+    int Base_health;
+    int Base_attack;
+    int Base_defence;
 
 public:
+    Pokemon(){}
     Pokemon(string& pkmn,pkmn_move& move1,pkmn_move& move2,pkmn_move& move3,pkmn_move& move4,int _type,int _type2);
 
 };
+
+bool choose_pokemon(Pokemon& mypkmn);
 
 
 
