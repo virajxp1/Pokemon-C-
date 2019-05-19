@@ -14,10 +14,15 @@ class pkmn_move {
     int type;
     int power;
     int accuracy;
+    int pp_MAX;
     int pp;
     string name;
+    bool special;
 public:
+    pkmn_move(int t,int damage,string n,int acc, int num, bool sp);
     pkmn_move(int t,int damage,string n,int acc, int num);
+    void print();
+
     int move_type(){return type;}
     int move_power(){return power;}
     int move_accuracy(){return accuracy;}

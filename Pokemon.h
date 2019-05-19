@@ -16,11 +16,16 @@ class Pokemon {
     int Base_health;
     int Base_attack;
     int Base_defence;
+    int Base_SPattack;
+    int Base_SPdefence;
+    int Base_Speed;
+    int health;
 
 public:
     Pokemon(){}
-    Pokemon(string& pkmn,pkmn_move& move1,pkmn_move& move2,pkmn_move& move3,pkmn_move& move4,int _type,int _type2);
-
+    Pokemon(string pkmn, vector<pkmn_move>& move_set, int _type, int _type2,int HP,int Atk, int Def, int SPa, int SPdf, int Spd);
+    void printDetails();
+    void damage(int d){health -= d;}
 };
 
 bool choose_pokemon(Pokemon& mypkmn);

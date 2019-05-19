@@ -6,27 +6,9 @@
 
 #IncludeRegexTransform: 
 
-C:/Users/viraj parikh/CLionProjects/Pokemon C++/Pokemon.cpp
-Pokemon.h
-C:/Users/viraj parikh/CLionProjects/Pokemon C++/Pokemon.h
-
-C:/Users/viraj parikh/CLionProjects/Pokemon C++/Pokemon.h
-vector
--
+C:/Users/viraj parikh/CLionProjects/Pokemon C++/move.cpp
 move.h
 C:/Users/viraj parikh/CLionProjects/Pokemon C++/move.h
-
-C:/Users/viraj parikh/CLionProjects/Pokemon C++/main.cpp
-iostream
--
-vector
--
-time.h
--
-Pokemon.h
-C:/Users/viraj parikh/CLionProjects/Pokemon C++/Pokemon.h
-string
--
 
 C:/Users/viraj parikh/CLionProjects/Pokemon C++/move.h
 iostream

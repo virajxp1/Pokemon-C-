@@ -5,8 +5,31 @@
 #include "move.h"
 
 pkmn_move:: pkmn_move(int t, int damage, string n,int acc, int num){
+    type = t; power = damage; name = n; accuracy = acc; pp_MAX = num; pp = num;
+    if(accuracy >100) {abort();}
+    special = false;
+}
+pkmn_move:: pkmn_move(int t, int damage, string n,int acc, int num, bool sp){
     type = t; power = damage; name = n; accuracy = acc; pp = num;
     if(accuracy >100) {abort();}
+    special = sp;
+}
+
+void pkmn_move::print() {
+    if(type == Fire)
+        cout<<"(Fire) "<<name<<" Base Damage: " << power<<" Accuracy: " << accuracy << " PP: "<< pp<<"/"<<pp_MAX<< endl;
+    else if(type == Water)
+        cout<<"(Water) "<<name<<" Base Damage: " << power<<" Accuracy: " << accuracy << " PP: "<< pp<<"/"<<pp_MAX<< endl;
+    else if(type == Flying)
+        cout<<"(Flying) "<<name<<" Base Damage: " << power<<" Accuracy: " << accuracy << " PP: "<< pp<<"/"<<pp_MAX<< endl;
+    else if(type == Grass)
+        cout<<"(Grass) "<<name<<" Base Damage: " << power<<" Accuracy: " << accuracy << " PP: "<< pp<<"/"<<pp_MAX<< endl;
+    else if(type == Poison)
+        cout<<"(Poison) "<<name<<" Base Damage: " << power<<" Accuracy: " << accuracy << " PP: "<< pp<<"/"<<pp_MAX<< endl;
+    else if(type == Electric)
+        cout<<"(Electric) "<<name<<" Base Damage: " << power<<" Accuracy: " << accuracy << " PP: "<< pp<<"/"<<pp_MAX<< endl;
+    else if(type == Normal)
+        cout<<"(Normal) "<<name<<" Base Damage: " << power<<" Accuracy: " << accuracy << " PP: "<< pp<<"/"<<pp_MAX<< endl;
 }
 
 vector<vector<pkmn_move>> create_moves(){
@@ -54,6 +77,7 @@ vector<vector<pkmn_move>> create_moves(){
     normal.push_back(pkmn_move(Normal,40,"Tackle",100,35));
     normal.push_back(pkmn_move(Normal,70,"Slash",100,25));
     normal.push_back(pkmn_move(Normal,70,"Headbutt",100,20));
+    normal.push_back(pkmn_move(Normal,85,"Skull Bash",90,20));
 
 
     vector<vector<pkmn_move>> move_table;

@@ -3,6 +3,7 @@
 #include <time.h>
 #include "Pokemon.h"
 #include <string>
+#include <time.h>
 
 using namespace std;
 
@@ -14,8 +15,10 @@ int main() {
      * this charizard will have some assortment of moves based on what he can learn
      */
     cout<<"Welcome to Pokemon C++" << endl;
-    system("PAUSE");
+    //system("PAUSE");
     Pokemon myPkmn;
+    srand(time(NULL));
     while(!(choose_pokemon(myPkmn)));
+    myPkmn.printDetails();
 }
 
