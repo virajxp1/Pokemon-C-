@@ -13,6 +13,7 @@ class Pokemon {
     vector <pkmn_move> moves;
     int type;
     int type2;
+    int level;
     int Base_health;
     int Base_attack;
     int Base_defence;
@@ -25,12 +26,22 @@ public:
     Pokemon(){}
     Pokemon(string pkmn, vector<pkmn_move>& move_set, int _type, int _type2,int HP,int Atk, int Def, int SPa, int SPdf, int Spd);
     void printDetails();
+    void printSimple();
+    void printMoves();
     void damage(int d){health -= d;}
+    int pkmn_type(){return type;}
+    int pkmn_type2() {return type2;}
+    int pkmn_level(){return level;}
+    int pkmn_attack(){return Base_attack;}
+    int pkmn_spattack(){return Base_SPattack;}
+    int pkmn_defence(){return Base_defence;}
+    int pkmn_spdefence(){return Base_SPdefence;}
+    int speed(){return Base_Speed;}
 };
 
 bool choose_pokemon(Pokemon& mypkmn);
 
-
+int type_advantage(int type1,int type2);
 
 
 #endif //UNTITLED_POKEMON_H

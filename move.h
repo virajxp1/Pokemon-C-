@@ -8,7 +8,7 @@
 #include <vector>
 using namespace std;
 
-typedef enum type {Grass,Fire,Water,Electric,Poison,Normal,Flying} Type;
+typedef enum type {Grass,Fire,Water,Electric,Poison,Normal,Flying,Ground,Fighting,Rock,Ghost,Dragon,Physic} Type;
 
 class pkmn_move {
     int type;
