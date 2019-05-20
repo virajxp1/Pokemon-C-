@@ -27,6 +27,7 @@ public:
     Pokemon(string pkmn, vector<pkmn_move>& move_set, int _type, int _type2,int HP,int Atk, int Def, int SPa, int SPdf, int Spd);
     void printDetails();
     void printSimple();
+    void printCPU();
     void printMoves();
     void damage(int d){health -= d;}
     string pkmn_name() {return name;}
@@ -41,10 +42,11 @@ public:
 };
 
 bool choose_pokemon(Pokemon& mypkmn);
+bool CPU_choosePkmn(Pokemon& CpuPkmn, int mytype);
 Pokemon pkmn_generate(string name);
 
-int type_advantage(int type1,int type2);
-int type_disadvantage(int type1,int type2);
+bool type_advantage(int type1,int type2);
+bool type_disadvantage(int type1,int type2);
 
 
 #endif //UNTITLED_POKEMON_H

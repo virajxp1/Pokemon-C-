@@ -150,8 +150,14 @@ vector<vector<pkmn_move>> create_moves(){
     move_table[Normal] = normal;
     move_table[Flying] = flying;
     move_table[Poison] = poison;
-
     return move_table;
+}
+
+void delay(int p){
+    int i = p;
+    while (i!=0){
+        i--;
+    }
 }
 
 /*

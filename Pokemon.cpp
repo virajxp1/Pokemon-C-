@@ -90,11 +90,17 @@ void Pokemon :: printSimple() {
     cout<<"Health: "<<health<<"/"<<Base_health<<endl;
 }
 
+void Pokemon ::printCPU() {
+    cout<<"Level " << level<< " " << name<<endl;
+    cout<<"Health: "<<health<<"/"<<Base_health<<endl;
+}
+
 void Pokemon ::printMoves() {
     for(int i = 0;i<4;i++){
         moves[i].print();
     }
 }
+
 bool choose_pokemon(Pokemon& mypkmn){
     cout<<"Choose your Pokemon: \n";
     cout<<"1. Venusaur"<<
@@ -111,7 +117,7 @@ bool choose_pokemon(Pokemon& mypkmn){
           " 12. Alakazam" <<
           " 13. Snorlax" <<
           " 14. Dragonite" <<
-          " 15. Mewtwo" << endl;
+          " 15. Mewtwo" << endl<<endl<<endl;
     string name;
     cin>>name;
     for(int i = 0; i<name.length();i++){
@@ -124,13 +130,29 @@ bool choose_pokemon(Pokemon& mypkmn){
         return false;
     }
     else{
+        cout<<"You Chose "<<mypkmn.pkmn_name()<<endl;
        return true;
     }
 }
 
+bool CPU_choosePkmn(Pokemon& CpuPkmn,int mytype){
+    int generatorNum = rand()%100+1;
+    string name = to_string(rand()%15 +1);
+    CpuPkmn = pkmn_generate(name);
+    //The cpu pokemon should only have a type disadvantage 10% of the time
+    if(type_disadvantage(CpuPkmn.pkmn_type(),mytype)){
+        return false;
+    }
+    else{
+        cout<<"Your Opponent Chose "<<CpuPkmn.pkmn_name()<<endl;
+        return true;
+    }
+
+}
+
+
 Pokemon pkmn_generate(string name){
     if(name == "CHARIZARD" || name == "2"){
-        cout<<"You Chose Charizard" << endl;
         vector<pkmn_move> possibleMoves{pkmn_move(Fire,40,"Ember",100,40,true),
                                         pkmn_move(Fire,105,"Heat Wave",85,10,true),
                                         pkmn_move(Fire,90,"Flamethrower",100,20,true),
@@ -150,7 +172,6 @@ Pokemon pkmn_generate(string name){
         return Charizard;
     }
     else if(name == "BLASTOISE" || name == "3"){
-        cout<<"You Chose Blastoise" << endl;
         vector<pkmn_move> possibleMoves{pkmn_move(Water,45,"Bubble Gun",100,45,true),
                                         pkmn_move(Water,50,"Water Gun",100,45,true),
                                         pkmn_move(Water,80,"Surf",90,25),
@@ -171,7 +192,6 @@ Pokemon pkmn_generate(string name){
         return Blastoise;
     }
     else if(name == "VENUSAUR" || name == "1"){
-        cout<<"You Chose Venusaur" << endl;
         vector<pkmn_move> possibleMoves{pkmn_move(Grass,45,"Vine Whip",100,30),
                                         pkmn_move(Grass,55,"Razor Leaf",100,20,true),
                                         pkmn_move(Grass,120,"Solar Beam",70,10,true),
@@ -192,7 +212,6 @@ Pokemon pkmn_generate(string name){
         return Venusaur;
     }
     else if(name == "PIKACHU" || name =="4"){
-        cout<<"You Chose Pikachu" << endl;
         vector<pkmn_move> possibleMoves{pkmn_move(Electric,75,"Thunder Punch",85,20),
                                         pkmn_move(Electric,40,"Thunder Shock",100,30,true),
                                         pkmn_move(Electric,90,"Thunderbolt",100,20,true),
@@ -211,7 +230,6 @@ Pokemon pkmn_generate(string name){
         return Pikachu;
     }
     else if(name == "PIGEOT" || name == "5"){
-        cout<<"You Chose Pigeot" << endl;
         vector<pkmn_move> possibleMoves{pkmn_move(Flying,60,"Wing Attack",100,25,true),
                                         pkmn_move(Flying,75,"Air Slash",95,20),
                                         pkmn_move(Flying,40,"Gust",100,30,true),
@@ -229,7 +247,6 @@ Pokemon pkmn_generate(string name){
         return Pigeot;
     }
     else if(name == "NIDOKING" || name == "6"){
-        cout<<"You Chose Nidoking" << endl;
         vector<pkmn_move> possibleMoves{pkmn_move(Normal,120,"Thrash",60,5),
                                         pkmn_move(Normal,150,"Hyper Beam",50,5,true),
                                         pkmn_move(Fighting,85,"Seismic Toss",100,10),
@@ -251,7 +268,6 @@ Pokemon pkmn_generate(string name){
         return Nidoking;
     }
     else if(name == "NIDOQUEEN" || name == "7"){
-        cout<<"You Chose Nidoqueen" << endl;
         vector<pkmn_move> possibleMoves{pkmn_move(Normal,120,"Thrash",60,5),
                                         pkmn_move(Normal,150,"Hyper Beam",50,5,true),
                                         pkmn_move(Fighting,85,"Seismic Toss",100,10),
@@ -274,7 +290,6 @@ Pokemon pkmn_generate(string name){
 
     }
     else if(name == "MACHAMP" || name =="8"){
-        cout<<"You Chose Machamp" << endl;
         vector<pkmn_move> possibleMoves{pkmn_move(Normal,150,"Hyper Beam",50,5,true),
                                         pkmn_move(Fighting,85,"Seismic Toss",100,10),
                                         pkmn_move(Fire,75,"Fire Punch",85,20),
@@ -294,7 +309,6 @@ Pokemon pkmn_generate(string name){
 
     }
     else if(name == "GOLEM" || name =="9"){
-        cout<<"You Chose Golem" << endl;
         vector<pkmn_move> possibleMoves{pkmn_move(Rock,75,"Rock Slide",90,15,true),
                                         pkmn_move(Rock,50,"Rock Throw",90,25,true),
                                         pkmn_move(Ground,100,"Earthquake",85,10,true),
@@ -313,7 +327,6 @@ Pokemon pkmn_generate(string name){
 
     }
     else if(name == "MUK" || name == "10"){
-        cout<<"You Chose Muk" << endl;
         vector<pkmn_move> possibleMoves{pkmn_move(Poison,90,"Sludge Bomb",100,25,true),
                                         pkmn_move(Poison,30,"Poison Sting",100,35),
                                         pkmn_move(Poison,80,"Poison Jab",100,25),
@@ -331,7 +344,6 @@ Pokemon pkmn_generate(string name){
 
     }
     else if(name == "GENGAR" || name == "11"){
-        cout<<"You Chose Gengar" << endl;
         vector<pkmn_move> possibleMoves{pkmn_move(Poison,90,"Sludge Bomb",100,25,true),
                                         pkmn_move(Poison,30,"Poison Sting",100,35),
                                         pkmn_move(Poison,80,"Poison Jab",100,25),
@@ -355,7 +367,6 @@ Pokemon pkmn_generate(string name){
 
     }
     else if(name == "ALAKAZAM" || name == "12"){
-        cout<<"You Chose Alakazam" << endl;
         vector<pkmn_move> possibleMoves{pkmn_move(Physic,70,"Psychic",100,25,true),
                                         pkmn_move(Physic,50,"Confusion",100,35,true),
                                         pkmn_move(Ghost,70,"Night Shade",95,25,true),
@@ -373,7 +384,6 @@ Pokemon pkmn_generate(string name){
 
     }
     else if(name == "SNORLAX" || name == "13"){
-        cout<<"You Chose Snorlax" << endl;
         vector<pkmn_move> possibleMoves{pkmn_move(Physic,70,"Psychic",100,25,true),
                                         pkmn_move(Normal,70,"Headbutt",100,20),
                                         pkmn_move(Fighting,120,"Superpower",80,5),
@@ -398,7 +408,6 @@ Pokemon pkmn_generate(string name){
         return s;
     }
     else if(name == "DRAGONITE" || name == "14"){
-        cout<<"You Chose Dragonite" << endl;
         vector<pkmn_move> possibleMoves{pkmn_move(Physic,70,"Psychic",100,25,true),
                                         pkmn_move(Dragon,120,"Outrage",60,10,true),
                                         pkmn_move(Normal,150,"Hyper Beam",80,5,true),
@@ -424,7 +433,6 @@ Pokemon pkmn_generate(string name){
 
     }
     else if(name == "MEWTWO" || name == "15"){
-        cout<<"mmmmmwwwwahahahahahaha you will now face the wrath of Mewtwo" << endl;
         vector<pkmn_move> possibleMoves{pkmn_move(Physic,70,"Psychic",100,25,true),
                                         pkmn_move(Dragon,120,"Outrage",60,10,true),
                                         pkmn_move(Normal,150,"Hyper Beam",80,5,true),
@@ -447,5 +455,120 @@ Pokemon pkmn_generate(string name){
         vector<pkmn_move> nulll;
         Pokemon null("null",nulll,0,0,0,0,0,0,0,0);
         return null;
+    }
+}
+
+bool type_advantage(int type1,int type2){
+    if(type1 == Grass){
+        if(type2 == Ground || type2 == Rock || type2 == Water){
+            return true;
+        }
+        return false;
+    }
+    if(type1 == Dragon){
+        return false;
+    }
+    if(type1 == Electric){
+        if(type2 == Flying || type2 == Water){
+            return true;
+        }
+        return false;
+    }
+    if(type1 == Fighting){
+        if(type2 == Normal || type2 == Rock) {
+            return true;
+        }
+        return false;
+    }
+    if(type1 ==Ghost){
+        return false;
+    }
+    if(type1 == Ground){
+        if(type2 == Electric || type2 == Fire || type2 == Poison || type2 == Rock){
+            return true;
+        }
+        return false;
+    }
+    if(type1 ==  Normal){
+        return false;
+    }
+    if(type1 == Poison){
+        if(type2 == Grass){
+            return true;
+        }
+        return false;
+    }
+    if(type1 == Physic){
+        if(type2 == Fighting || type2 == Poison){
+            return true;
+        }
+        return false;
+    }
+    if(type1 == Rock){
+        if(type2 ==Fire ||type2 ==Flying)
+            return true;
+        return false;
+    }
+    if(type1 == Water){
+        if(type2 == Fire || type2 == Ground || type2 == Rock)
+            return true;
+        return false;
+    }
+}
+bool type_disadvantage(int type1,int type2){
+    if(type1 == Electric){
+        if(type2 == Electric || type2 == Grass)
+            return true;
+        return false;
+    }
+    if(type1 == Dragon)
+        return false;
+    if(type1 == Fighting){
+        if(type2 == Flying || type2 == Physic)
+            return true;
+        return false;
+    }
+    if(type1 == Fire){
+        if(type2 == Rock || type2 == Water)
+            return true;
+        return false;
+    }
+    if(type1 == Flying) {
+        if(type2 == Electric || type2 == Rock)
+            return true;
+        return false;
+    }
+    if(type1 == Grass){
+        if(type2 == Fire || type2 == Flying || type2 == Grass || type2 == Poison)
+            return true;
+        return false;
+    }
+    if(type1 == Ground){
+        if(type2 == Grass)
+            return true;
+        return false;
+    }
+    if(type1 == Normal){
+        return false;
+    }
+    if(type1 == Poison){
+        if(type2 == Ground || type2 == Poison || type2 == Rock)
+            return true;
+        return false;
+    }
+    if(type1 == Physic){
+        if(type2 == Physic)
+            return true;
+        return false;
+    }
+    if(type1 ==  Rock){
+        if(type2 ==Fighting || type2 == Rock)
+            return true;
+        return false;
+    }
+    if(type1 == Water){
+        if(type2 == Grass)
+            return true;
+        return false;
     }
 }

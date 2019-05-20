@@ -32,5 +32,6 @@ public:
 };
 
 vector<vector<pkmn_move>> create_moves();
+void delay(int p);
 
 #endif //UNTITLED_MOVE_H
