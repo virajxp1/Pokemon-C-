@@ -29,6 +29,7 @@ public:
     void printSimple();
     void printMoves();
     void damage(int d){health -= d;}
+    string pkmn_name() {return name;}
     int pkmn_type(){return type;}
     int pkmn_type2() {return type2;}
     int pkmn_level(){return level;}
@@ -40,8 +41,10 @@ public:
 };
 
 bool choose_pokemon(Pokemon& mypkmn);
+Pokemon pkmn_generate(string name);
 
 int type_advantage(int type1,int type2);
+int type_disadvantage(int type1,int type2);
 
 
 #endif //UNTITLED_POKEMON_H

@@ -119,6 +119,16 @@ bool choose_pokemon(Pokemon& mypkmn){
             name[i] = toupper(name[i]);
         }
     }
+    mypkmn = pkmn_generate(name);
+    if(mypkmn.pkmn_name() == "null") {
+        return false;
+    }
+    else{
+       return true;
+    }
+}
+
+Pokemon pkmn_generate(string name){
     if(name == "CHARIZARD" || name == "2"){
         cout<<"You Chose Charizard" << endl;
         vector<pkmn_move> possibleMoves{pkmn_move(Fire,40,"Ember",100,40,true),
@@ -137,11 +147,10 @@ bool choose_pokemon(Pokemon& mypkmn){
             possibleMoves.erase(possibleMoves.begin()+r);
         }
         Pokemon Charizard("Charizard",moves_set,Fire,Flying,rand()%94+266,rand()%138+155,rand()%136+144,rand()%148+200,rand()%138+157,rand()%144+184);
-        mypkmn = Charizard;
-        return true;
+        return Charizard;
     }
     else if(name == "BLASTOISE" || name == "3"){
-        cout<<"You Choose Blastoise" << endl;
+        cout<<"You Chose Blastoise" << endl;
         vector<pkmn_move> possibleMoves{pkmn_move(Water,45,"Bubble Gun",100,45,true),
                                         pkmn_move(Water,50,"Water Gun",100,45,true),
                                         pkmn_move(Water,80,"Surf",90,25),
@@ -150,7 +159,7 @@ bool choose_pokemon(Pokemon& mypkmn){
                                         pkmn_move(Normal,85,"Skull Bash",90,20),
                                         pkmn_move(Normal,40,"Tackle",100,35),
                                         pkmn_move(Dragon,120,"Outrage",60,10,true)
-                                        };
+        };
 
         vector<pkmn_move> moves_set;
         for(int i = 0;i<4;i++){
@@ -159,20 +168,19 @@ bool choose_pokemon(Pokemon& mypkmn){
             possibleMoves.erase(possibleMoves.begin()+r);
         }
         Pokemon Blastoise("Blastoise",moves_set,Water,-1,rand()%94+268,rand()%138+153,rand()%144+184,rand()%138+157,rand()%146+193,rand()%136+144);
-        mypkmn = Blastoise;
-        return true;
+        return Blastoise;
     }
     else if(name == "VENUSAUR" || name == "1"){
-        cout<<"You Choose Venusaur" << endl;
+        cout<<"You Chose Venusaur" << endl;
         vector<pkmn_move> possibleMoves{pkmn_move(Grass,45,"Vine Whip",100,30),
-                                        pkmn_move(Grass,55,"Razor Leaf",100,20),
-                                        pkmn_move(Grass,120,"Solar Beam",50,10),
+                                        pkmn_move(Grass,55,"Razor Leaf",100,20,true),
+                                        pkmn_move(Grass,120,"Solar Beam",70,10,true),
                                         pkmn_move(Grass,95,"Power Whip",85,15),
-                                        pkmn_move(Grass,100,"Petal Dance",100,5),
-                                        pkmn_move(Poison,90,"Sludge Bomb",100,25),
-                                        pkmn_move(Dragon,120,"Outrage",60,10),
-                                        pkmn_move(Ground,100,"Earthquake",85,10),
-                                        pkmn_move(Poison,30,"Poison Sting",100,35)};
+                                        pkmn_move(Grass,100,"Petal Dance",100,5,true),
+                                        pkmn_move(Poison,90,"Sludge Bomb",100,25,true),
+                                        pkmn_move(Dragon,120,"Outrage",60,10,true),
+                                        pkmn_move(Ground,100,"Earthquake",85,10,true),
+                                        pkmn_move(Poison,30,"Poison Sting",100,35,true)};
 
         vector<pkmn_move> moves_set;
         for(int i = 0;i<4;i++){
@@ -181,19 +189,18 @@ bool choose_pokemon(Pokemon& mypkmn){
             possibleMoves.erase(possibleMoves.begin()+r);
         }
         Pokemon Venusaur("Venusaur",moves_set,Grass,Poison,rand()%94+270,rand()%137+152,rand()%138+153,rand()%144+184,rand()%144+184,rand()%136+148);
-        mypkmn = Venusaur;
-        return true;
+        return Venusaur;
     }
     else if(name == "PIKACHU" || name =="4"){
-        cout<<"You Choose Pikachu" << endl;
+        cout<<"You Chose Pikachu" << endl;
         vector<pkmn_move> possibleMoves{pkmn_move(Electric,75,"Thunder Punch",85,20),
-                                        pkmn_move(Electric,40,"Thunder Shock",100,30),
-                                        pkmn_move(Electric,90,"Thunderbolt",100,20),
-                                        pkmn_move(Electric,120,"Thunder",70,10),
+                                        pkmn_move(Electric,40,"Thunder Shock",100,30,true),
+                                        pkmn_move(Electric,90,"Thunderbolt",100,20,true),
+                                        pkmn_move(Electric,120,"Thunder",70,10,true),
                                         pkmn_move(Normal,70,"Headbutt",100,20),
                                         pkmn_move(Fighting,75,"Brick Break",100,15),
                                         pkmn_move(Fighting,85,"Seismic Toss",100,10),
-                                        pkmn_move(Ghost,80,"Shadow Ball",100,20)};
+                                        pkmn_move(Ghost,80,"Shadow Ball",100,20,true)};
         vector<pkmn_move> moves_set;
         for(int i = 0;i<4;i++){
             int r = rand() % possibleMoves.size();
@@ -201,18 +208,17 @@ bool choose_pokemon(Pokemon& mypkmn){
             possibleMoves.erase(possibleMoves.begin()+r);
         }
         Pokemon Pikachu("Pikachu",moves_set,Electric,-1,rand()%84+205,rand()%100+290,rand()%144+90,rand()%94+290,rand()%144+80,rand()%144+250);
-        mypkmn = Pikachu;
-        return true;
+        return Pikachu;
     }
     else if(name == "PIGEOT" || name == "5"){
-        cout<<"You Choose Pigeot" << endl;
-        vector<pkmn_move> possibleMoves{pkmn_move(Flying,60,"Wing Attack",100,25),
+        cout<<"You Chose Pigeot" << endl;
+        vector<pkmn_move> possibleMoves{pkmn_move(Flying,60,"Wing Attack",100,25,true),
                                         pkmn_move(Flying,75,"Air Slash",95,20),
-                                        pkmn_move(Flying,40,"Gust",100,30),
+                                        pkmn_move(Flying,40,"Gust",100,30,true),
                                         pkmn_move(Flying,140,"Sky Attack",70,5),
-                                        pkmn_move(Fire,105,"Heat Wave",85,10),
+                                        pkmn_move(Fire,105,"Heat Wave",85,10,true),
                                         pkmn_move(Normal,70,"Headbutt",100,20),
-                                        pkmn_move(Normal,150,"Hyper Beam",50,5)};
+                                        pkmn_move(Normal,150,"Hyper Beam",50,5,true)};
         vector<pkmn_move> moves_set;
         for(int i = 0;i<4;i++){
             int r = rand() % possibleMoves.size();
@@ -220,22 +226,21 @@ bool choose_pokemon(Pokemon& mypkmn){
             possibleMoves.erase(possibleMoves.begin()+r);
         }
         Pokemon Pigeot("Pigeot",moves_set,Flying,Normal,rand()%94+276,rand()%136+148,rand()%134+139,rand()%132+130,rand()%132+130,rand()%145+186);
-        mypkmn = Pigeot;
-        return true;
+        return Pigeot;
     }
     else if(name == "NIDOKING" || name == "6"){
-        cout<<"You Choose Nidoking" << endl;
+        cout<<"You Chose Nidoking" << endl;
         vector<pkmn_move> possibleMoves{pkmn_move(Normal,120,"Thrash",60,5),
-                                        pkmn_move(Normal,150,"Hyper Beam",50,5),
+                                        pkmn_move(Normal,150,"Hyper Beam",50,5,true),
                                         pkmn_move(Fighting,85,"Seismic Toss",100,10),
                                         pkmn_move(Ground,100,"Earthquake",85,10),
                                         pkmn_move(Ground,80,"Drill Run",80,10),
-                                        pkmn_move(Poison,30,"Poison Sting",100,35),
+                                        pkmn_move(Poison,30,"Poison Sting",100,35,true),
                                         pkmn_move(Poison,80,"Poison Jab",100,25),
-                                        pkmn_move(Poison,90,"Sludge Bomb",100,25),
+                                        pkmn_move(Poison,90,"Sludge Bomb",100,25,true),
                                         pkmn_move(Dragon,60,"Dragon Tail",90,30),
                                         pkmn_move(Fire,75,"Fire Punch",85,20),
-                                        pkmn_move(Ghost,80,"Shadow Ball",100,20)};
+                                        pkmn_move(Ghost,80,"Shadow Ball",100,20,true)};
         vector<pkmn_move> moves_set;
         for(int i = 0;i<4;i++){
             int r = rand() % possibleMoves.size();
@@ -243,22 +248,21 @@ bool choose_pokemon(Pokemon& mypkmn){
             possibleMoves.erase(possibleMoves.begin()+r);
         }
         Pokemon Nidoking("Nidoking",moves_set,Ground,Poison,rand()%94+272,rand()%155+188,rand()%125+143,rand()%138+157,rand()%134+139,rand()%138+157);
-        mypkmn = Nidoking;
-        return true;
+        return Nidoking;
     }
     else if(name == "NIDOQUEEN" || name == "7"){
-        cout<<"You Choose Nidoqueen" << endl;
+        cout<<"You Chose Nidoqueen" << endl;
         vector<pkmn_move> possibleMoves{pkmn_move(Normal,120,"Thrash",60,5),
-                                        pkmn_move(Normal,150,"Hyper Beam",50,5),
+                                        pkmn_move(Normal,150,"Hyper Beam",50,5,true),
                                         pkmn_move(Fighting,85,"Seismic Toss",100,10),
-                                        pkmn_move(Ground,100,"Earthquake",85,10),
+                                        pkmn_move(Ground,100,"Earthquake",85,10,true),
                                         pkmn_move(Ground,80,"Drill Run",80,10),
-                                        pkmn_move(Poison,30,"Poison Sting",100,35),
+                                        pkmn_move(Poison,30,"Poison Sting",100,35,true),
                                         pkmn_move(Poison,80,"Poison Jab",100,25),
-                                        pkmn_move(Poison,90,"Sludge Bomb",100,25),
-                                        pkmn_move(Water,45,"Bubble Gun",100,45),
+                                        pkmn_move(Poison,90,"Sludge Bomb",100,25,true),
+                                        pkmn_move(Water,45,"Bubble Gun",100,45,true),
                                         pkmn_move(Fire,75,"Fire Punch",85,20),
-                                        pkmn_move(Electric,120,"Thunder",70,10)};
+                                        pkmn_move(Electric,120,"Thunder",70,10,true)};
         vector<pkmn_move> moves_set;
         for(int i = 0;i<4;i++){
             int r = rand() % possibleMoves.size();
@@ -266,35 +270,182 @@ bool choose_pokemon(Pokemon& mypkmn){
             possibleMoves.erase(possibleMoves.begin()+r);
         }
         Pokemon Nidoq("Nidoqueen",moves_set,Ground,Poison,rand()%94+272,rand()%138+157,rand()%134+139,rand()%155+188,rand()%125+143,rand()%138+157);
-        mypkmn = Nidoq;
-        return true;
-    }
-    else if(name == "MACHAMP"){
+        return Nidoq;
 
     }
-    else if(name == "GOLEM"){
+    else if(name == "MACHAMP" || name =="8"){
+        cout<<"You Chose Machamp" << endl;
+        vector<pkmn_move> possibleMoves{pkmn_move(Normal,150,"Hyper Beam",50,5,true),
+                                        pkmn_move(Fighting,85,"Seismic Toss",100,10),
+                                        pkmn_move(Fire,75,"Fire Punch",85,20),
+                                        pkmn_move(Fighting,75,"Brick Break",100,15),
+                                        pkmn_move(Fighting,120,"Superpower",80,5),
+                                        pkmn_move(Fighting,30,"Low Kick",95,35),
+                                        pkmn_move(Fighting,50,"Karate Chop",100,30),
+                                        pkmn_move(Poison,80,"Poison Jab",100,25)};
+        vector<pkmn_move> moves_set;
+        for(int i = 0;i<4;i++){
+            int r = rand() % possibleMoves.size();
+            moves_set.push_back(possibleMoves[r]);
+            possibleMoves.erase(possibleMoves.begin()+r);
+        }
+        Pokemon Machamp("Machamp",moves_set,Fighting,-1,rand()%94+220,rand()%148+238,rand()%134+148,rand()%135+121,rand()%135+157,rand()%118+103);
+        return Machamp;
 
     }
-    else if(name == "MUK"){
+    else if(name == "GOLEM" || name =="9"){
+        cout<<"You Chose Golem" << endl;
+        vector<pkmn_move> possibleMoves{pkmn_move(Rock,75,"Rock Slide",90,15,true),
+                                        pkmn_move(Rock,50,"Rock Throw",90,25,true),
+                                        pkmn_move(Ground,100,"Earthquake",85,10,true),
+                                        pkmn_move(Ground,80,"Drill Run",80,10),
+                                        pkmn_move(Fighting,30,"Low Kick",95,35),
+                                        pkmn_move(Normal,40,"Scratch",100,35),
+                                        pkmn_move(Normal,70,"Headbutt",100,20)};
+        vector<pkmn_move> moves_set;
+        for(int i = 0;i<4;i++){
+            int r = rand() % possibleMoves.size();
+            moves_set.push_back(possibleMoves[r]);
+            possibleMoves.erase(possibleMoves.begin()+r);
+        }
+        Pokemon Golem("Golem",moves_set,Rock,Ground,rand()%94+270,rand()%148+220,rand()%134+248,rand()%135+103,rand()%135+121,rand()%118+85);
+        return Golem;
 
     }
-    else if(name == "GENGAR"){
+    else if(name == "MUK" || name == "10"){
+        cout<<"You Chose Muk" << endl;
+        vector<pkmn_move> possibleMoves{pkmn_move(Poison,90,"Sludge Bomb",100,25,true),
+                                        pkmn_move(Poison,30,"Poison Sting",100,35),
+                                        pkmn_move(Poison,80,"Poison Jab",100,25),
+                                        pkmn_move(Electric,90,"Thunderbolt",100,20,true),
+                                        pkmn_move(Fire,75,"Fire Punch",85,20),
+                                        pkmn_move(Rock,75,"Rock Slide",90,15,true)};
+        vector<pkmn_move> moves_set;
+        for(int i = 0;i<4;i++){
+            int r = rand() % possibleMoves.size();
+            moves_set.push_back(possibleMoves[r]);
+            possibleMoves.erase(possibleMoves.begin()+r);
+        }
+        Pokemon Muk("Muk",moves_set,Poison,-1,rand()%105+320,rand()%125+193,rand()%134+139,rand()%135+121,rand()%155+184,rand()%118+85);
+        return Muk;
 
     }
-    else if(name == "ALAKAZAM"){
+    else if(name == "GENGAR" || name == "11"){
+        cout<<"You Chose Gengar" << endl;
+        vector<pkmn_move> possibleMoves{pkmn_move(Poison,90,"Sludge Bomb",100,25,true),
+                                        pkmn_move(Poison,30,"Poison Sting",100,35),
+                                        pkmn_move(Poison,80,"Poison Jab",100,25),
+                                        pkmn_move(Physic,70,"Psychic",100,25,true),
+                                        pkmn_move(Physic,50,"Confusion",100,35,true),
+                                        pkmn_move(Ghost,80,"Shadow Ball",100,20,true),
+                                        pkmn_move(Ghost,70,"Night Shade",95,25,true),
+                                        pkmn_move(Ghost,30,"Lick",100,30),
+                                        pkmn_move(Normal,150,"Hyper Beam",50,5,true),
+                                        pkmn_move(Fighting,75,"Brick Break",100,15),
+                                        pkmn_move(Fighting,85,"Seismic Toss",100,10),
+                                        pkmn_move(Electric,75,"Thunder Punch",85,20)};
+        vector<pkmn_move> moves_set;
+        for(int i = 0;i<4;i++){
+            int r = rand() % possibleMoves.size();
+            moves_set.push_back(possibleMoves[r]);
+            possibleMoves.erase(possibleMoves.begin()+r);
+        }
+        Pokemon Gengar("Gengar",moves_set,Ghost,Poison,rand()%96+230,rand()%130+121,rand()%138+112,rand()%156+238,rand()%144+139,rand()%148+202);
+        return Gengar;
 
     }
-    else if(name == "SNORLAX"){
+    else if(name == "ALAKAZAM" || name == "12"){
+        cout<<"You Chose Alakazam" << endl;
+        vector<pkmn_move> possibleMoves{pkmn_move(Physic,70,"Psychic",100,25,true),
+                                        pkmn_move(Physic,50,"Confusion",100,35,true),
+                                        pkmn_move(Ghost,70,"Night Shade",95,25,true),
+                                        pkmn_move(Physic,70,"Psyshock",100,25,true),
+                                        pkmn_move(Physic,65,"Psybeam",100,30,true),
+                                        pkmn_move(Normal,70,"Headbutt",100,20)};
+        vector<pkmn_move> moves_set;
+        for(int i = 0;i<4;i++){
+            int r = rand() % possibleMoves.size();
+            moves_set.push_back(possibleMoves[r]);
+            possibleMoves.erase(possibleMoves.begin()+r);
+        }
+        Pokemon Alakazam("Alakazam",moves_set,Physic,-1,rand()%96+220,rand()%124+94,rand()%120+85,rand()%165+247,rand()%140+175,rand()%152+220);
+        return Alakazam;
 
     }
-    else if(name == "DRAGONITE"){
+    else if(name == "SNORLAX" || name == "13"){
+        cout<<"You Chose Snorlax" << endl;
+        vector<pkmn_move> possibleMoves{pkmn_move(Physic,70,"Psychic",100,25,true),
+                                        pkmn_move(Normal,70,"Headbutt",100,20),
+                                        pkmn_move(Fighting,120,"Superpower",80,5),
+                                        pkmn_move(Ground,100,"Earthquake",85,10,true),
+                                        pkmn_move(Dragon,120,"Outrage",60,10,true),
+                                        pkmn_move(Normal,150,"Hyper Beam",50,5,true),
+                                        pkmn_move(Normal,40,"Tackle",100,35),
+                                        pkmn_move(Electric,120,"Thunder",70,10,true),
+                                        pkmn_move(Water,80,"Surf",90,25),
+                                        pkmn_move(Grass,120,"Solar Beam",50,10,true),
+                                        pkmn_move(Fire,75,"Fire Punch",85,20),
+                                        pkmn_move(Water,45,"Bubble Gun",100,45,true),
+                                        pkmn_move(Normal,70,"Slash",100,25),
+                                        pkmn_move(Dragon,85,"Dragon Pulse",90,15,true)};
+        vector<pkmn_move> moves_set;
+        for(int i = 0;i<4;i++){
+            int r = rand() % possibleMoves.size();
+            moves_set.push_back(possibleMoves[r]);
+            possibleMoves.erase(possibleMoves.begin()+r);
+        }
+        Pokemon s("Snorlax",moves_set,Normal,-1,rand()%96+430,rand()%148+202,rand()%130+121,rand()%130+121,rand()%148+202,rand()%118+54);
+        return s;
+    }
+    else if(name == "DRAGONITE" || name == "14"){
+        cout<<"You Chose Dragonite" << endl;
+        vector<pkmn_move> possibleMoves{pkmn_move(Physic,70,"Psychic",100,25,true),
+                                        pkmn_move(Dragon,120,"Outrage",60,10,true),
+                                        pkmn_move(Normal,150,"Hyper Beam",80,5,true),
+                                        pkmn_move(Electric,120,"Thunder",70,10,true),
+                                        pkmn_move(Water,80,"Surf",90,25),
+                                        pkmn_move(Grass,120,"Solar Beam",50,10,true),
+                                        pkmn_move(Dragon,85,"Dragon Pulse",90,15,true),
+                                        pkmn_move(Dragon,45,"Dragon Rage",90,15,true),
+                                        pkmn_move(Dragon,60,"Dragon Tail",90,30),
+                                        pkmn_move(Fire,105,"Heat Wave",85,10,true),
+                                        pkmn_move(Flying,60,"Wing Attack",100,25),
+                                        pkmn_move(Flying,75,"Air Slash",95,20),
+                                        pkmn_move(Flying,40,"Gust",100,30,true),
+                                        pkmn_move(Flying,140,"Sky Attack",70,5)};
+        vector<pkmn_move> moves_set;
+        for(int i = 0;i<4;i++){
+            int r = rand() % possibleMoves.size();
+            moves_set.push_back(possibleMoves[r]);
+            possibleMoves.erase(possibleMoves.begin()+r);
+        }
+        Pokemon d("Dragonite",moves_set,Dragon,Flying,rand()%96+292,rand()%168+245,rand()%148+175,rand()%142+184,rand()%142+184,rand()%136+148);
+        return d;
 
     }
-    else if(name == "MEWTWO"){
+    else if(name == "MEWTWO" || name == "15"){
+        cout<<"mmmmmwwwwahahahahahaha you will now face the wrath of Mewtwo" << endl;
+        vector<pkmn_move> possibleMoves{pkmn_move(Physic,70,"Psychic",100,25,true),
+                                        pkmn_move(Dragon,120,"Outrage",60,10,true),
+                                        pkmn_move(Normal,150,"Hyper Beam",80,5,true),
+                                        pkmn_move(Physic,70,"Psyshock",100,25,true),
+                                        pkmn_move(Physic,65,"Psybeam",100,30,true),
+                                        pkmn_move(Physic,50,"Confusion",100,35,true),
+                                        pkmn_move(Electric,120,"Thunder",70,10,true)};
+        vector<pkmn_move> moves_set;
+        for(int i = 0;i<4;i++){
+            int r = rand() % possibleMoves.size();
+            moves_set.push_back(possibleMoves[r]);
+            possibleMoves.erase(possibleMoves.begin()+r);
+        }
+        Pokemon m("Mewtwo",moves_set,Physic,-1,rand()%96+322,rand()%168+202,rand()%148+166,rand()%162+281,rand()%142+166,rand()%136+238);
+        return m;
 
     }
     else{
         cout<<"Sorry that is not a valid input try again" << endl;
-        return false;
+        vector<pkmn_move> nulll;
+        Pokemon null("null",nulll,0,0,0,0,0,0,0,0);
+        return null;
     }
 }

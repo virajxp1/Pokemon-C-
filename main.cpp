@@ -20,5 +20,17 @@ int main() {
     srand(time(NULL));
     while(!(choose_pokemon(myPkmn)));
     myPkmn.printDetails();
+    /*
+     * Next step:
+     * create type advantage/disvantage chart
+     * create function to pick opponents pokemon
+     * 50% chance it chooses a pokemon with no advantage or disadvantage
+     * 25% chance it chooses a pokemon with type advantage
+     * 25% chance it chooses a pokemon with type disadvantage
+     *
+     * Next Next step:
+     * create battle sequence
+     * make it pretty with ascii art
+     */
 }
 
