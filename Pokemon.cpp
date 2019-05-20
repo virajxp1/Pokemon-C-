@@ -223,11 +223,51 @@ bool choose_pokemon(Pokemon& mypkmn){
         mypkmn = Pigeot;
         return true;
     }
-    else if(name == "NIDOKING"){
-
+    else if(name == "NIDOKING" || name == "6"){
+        cout<<"You Choose Nidoking" << endl;
+        vector<pkmn_move> possibleMoves{pkmn_move(Normal,120,"Thrash",60,5),
+                                        pkmn_move(Normal,150,"Hyper Beam",50,5),
+                                        pkmn_move(Fighting,85,"Seismic Toss",100,10),
+                                        pkmn_move(Ground,100,"Earthquake",85,10),
+                                        pkmn_move(Ground,80,"Drill Run",80,10),
+                                        pkmn_move(Poison,30,"Poison Sting",100,35),
+                                        pkmn_move(Poison,80,"Poison Jab",100,25),
+                                        pkmn_move(Poison,90,"Sludge Bomb",100,25),
+                                        pkmn_move(Dragon,60,"Dragon Tail",90,30),
+                                        pkmn_move(Fire,75,"Fire Punch",85,20),
+                                        pkmn_move(Ghost,80,"Shadow Ball",100,20)};
+        vector<pkmn_move> moves_set;
+        for(int i = 0;i<4;i++){
+            int r = rand() % possibleMoves.size();
+            moves_set.push_back(possibleMoves[r]);
+            possibleMoves.erase(possibleMoves.begin()+r);
+        }
+        Pokemon Nidoking("Nidoking",moves_set,Ground,Poison,rand()%94+272,rand()%155+188,rand()%125+143,rand()%138+157,rand()%134+139,rand()%138+157);
+        mypkmn = Nidoking;
+        return true;
     }
-    else if(name == "NIDOQUEEN"){
-
+    else if(name == "NIDOQUEEN" || name == "7"){
+        cout<<"You Choose Nidoqueen" << endl;
+        vector<pkmn_move> possibleMoves{pkmn_move(Normal,120,"Thrash",60,5),
+                                        pkmn_move(Normal,150,"Hyper Beam",50,5),
+                                        pkmn_move(Fighting,85,"Seismic Toss",100,10),
+                                        pkmn_move(Ground,100,"Earthquake",85,10),
+                                        pkmn_move(Ground,80,"Drill Run",80,10),
+                                        pkmn_move(Poison,30,"Poison Sting",100,35),
+                                        pkmn_move(Poison,80,"Poison Jab",100,25),
+                                        pkmn_move(Poison,90,"Sludge Bomb",100,25),
+                                        pkmn_move(Water,45,"Bubble Gun",100,45),
+                                        pkmn_move(Fire,75,"Fire Punch",85,20),
+                                        pkmn_move(Electric,120,"Thunder",70,10)};
+        vector<pkmn_move> moves_set;
+        for(int i = 0;i<4;i++){
+            int r = rand() % possibleMoves.size();
+            moves_set.push_back(possibleMoves[r]);
+            possibleMoves.erase(possibleMoves.begin()+r);
+        }
+        Pokemon Nidoq("Nidoqueen",moves_set,Ground,Poison,rand()%94+272,rand()%138+157,rand()%134+139,rand()%155+188,rand()%125+143,rand()%138+157);
+        mypkmn = Nidoq;
+        return true;
     }
     else if(name == "MACHAMP"){
 
