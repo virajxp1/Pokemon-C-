@@ -122,6 +122,33 @@ untitled/fast:
 	$(MAKE) -f CMakeFiles\untitled.dir\build.make CMakeFiles/untitled.dir/build
 .PHONY : untitled/fast
 
+Battle.obj: Battle.cpp.obj
+
+.PHONY : Battle.obj
+
+# target to build an object file
+Battle.cpp.obj:
+	$(MAKE) -f CMakeFiles\untitled.dir\build.make CMakeFiles/untitled.dir/Battle.cpp.obj
+.PHONY : Battle.cpp.obj
+
+Battle.i: Battle.cpp.i
+
+.PHONY : Battle.i
+
+# target to preprocess a source file
+Battle.cpp.i:
+	$(MAKE) -f CMakeFiles\untitled.dir\build.make CMakeFiles/untitled.dir/Battle.cpp.i
+.PHONY : Battle.cpp.i
+
+Battle.s: Battle.cpp.s
+
+.PHONY : Battle.s
+
+# target to generate assembly for a file
+Battle.cpp.s:
+	$(MAKE) -f CMakeFiles\untitled.dir\build.make CMakeFiles/untitled.dir/Battle.cpp.s
+.PHONY : Battle.cpp.s
+
 Pokemon.obj: Pokemon.cpp.obj
 
 .PHONY : Pokemon.obj
@@ -212,6 +239,9 @@ help:
 	@echo ... edit_cache
 	@echo ... untitled
 	@echo ... rebuild_cache
+	@echo ... Battle.obj
+	@echo ... Battle.i
+	@echo ... Battle.s
 	@echo ... Pokemon.obj
 	@echo ... Pokemon.i
 	@echo ... Pokemon.s

@@ -4,6 +4,7 @@
 #include "Pokemon.h"
 #include <string>
 #include <time.h>
+#include "Battle.h"
 using namespace std;
 
 int main() {
@@ -35,20 +36,15 @@ int main() {
           "                \\ `.___.'\\    | |       | |      \n"
           "                 `.____ .'    '-'       '-'      \n"
           "                                                 "<<endl;
-    system("PAUSE");
     Pokemon myPkmn;
     Pokemon CPU_pkmn;
     srand(time(NULL));
     while (!(choose_pokemon(myPkmn)));
-    myPkmn.printSimple();
-    cout<<"\n\n\n";
-    delay(INT32_MAX/8);
+    cout<<"\n\n";
     while (!(CPU_choosePkmn(CPU_pkmn, myPkmn.pkmn_type())));
-    CPU_pkmn.printCPU();
-    cout<<"\n\n\n";
-    cout<<"Let the Battle Begin:";
-    delay(INT32_MAX);
-    cout << string(50, '\n');
+    system("PAUSE");
+    cout<<(string(50,'\n'));
+    Battle(myPkmn,CPU_pkmn);
     /*
      * Next step:
      * create battle sequence:
@@ -61,7 +57,6 @@ int main() {
      * it did x damage
      * "Press enter to continue"
      * repeat
-     * make it pretty with ascii art
      */
 }
 

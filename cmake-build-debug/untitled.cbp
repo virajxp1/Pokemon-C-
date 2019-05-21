@@ -80,6 +80,15 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="C:/Users/viraj parikh/CLionProjects/Pokemon C++/Battle.cpp">
+			<Option target="untitled"/>
+		</Unit>
+		<Unit filename="C:/Users/viraj parikh/CLionProjects/Pokemon C++/Battle.h">
+			<Option target="untitled"/>
+		</Unit>
+		<Unit filename="C:/Users/viraj parikh/CLionProjects/Pokemon C++/Images.h">
+			<Option target="untitled"/>
+		</Unit>
 		<Unit filename="C:/Users/viraj parikh/CLionProjects/Pokemon C++/Pokemon.cpp">
 			<Option target="untitled"/>
 		</Unit>

@@ -15,33 +15,37 @@ pkmn_move:: pkmn_move(int t, int damage, string n,int acc, int num, bool sp){
     special = sp;
 }
 
+void pkmn_move ::printSimple() {
+    cout<<name<<" | Base Damage: " << power;
+}
+
 void pkmn_move::print() {
     if(type == Fire)
-        cout<<"(Fire) "<<name<<" Base Damage: " << power<<" Accuracy: " << accuracy << " PP: "<< pp<<"/"<<pp_MAX<< endl;
+        cout<<"(Fire) | "<<name<<" | Base Damage: " << power<<" | Accuracy: " << accuracy << " | PP: "<< pp<<"/"<<pp_MAX<< " |";
     else if(type == Water)
-        cout<<"(Water) "<<name<<" Base Damage: " << power<<" Accuracy: " << accuracy << " PP: "<< pp<<"/"<<pp_MAX<< endl;
+        cout<<"(Water) | "<<name<<" | Base Damage: " << power<<" | Accuracy: " << accuracy << " | PP: "<< pp<<"/"<<pp_MAX<< " |";
     else if(type == Flying)
-        cout<<"(Flying) "<<name<<" Base Damage: " << power<<" Accuracy: " << accuracy << " PP: "<< pp<<"/"<<pp_MAX<< endl;
+        cout<<"(Flying) | "<<name<<" | Base Damage: " << power<<" | Accuracy: " << accuracy << " | PP: "<< pp<<"/"<<pp_MAX<< " |";
     else if(type == Grass)
-        cout<<"(Grass) "<<name<<" Base Damage: " << power<<" Accuracy: " << accuracy << " PP: "<< pp<<"/"<<pp_MAX<< endl;
+        cout<<"(Grass) | "<<name<<" | Base Damage: " << power<<" | Accuracy: " << accuracy << " | PP: "<< pp<<"/"<<pp_MAX<< " |";
     else if(type == Poison)
-        cout<<"(Poison) "<<name<<" Base Damage: " << power<<" Accuracy: " << accuracy << " PP: "<< pp<<"/"<<pp_MAX<< endl;
+        cout<<"(Poison) | "<<name<<" | Base Damage: " << power<<" | Accuracy: " << accuracy << " | PP: "<< pp<<"/"<<pp_MAX<< " |";
     else if(type == Electric)
-        cout<<"(Electric) "<<name<<" Base Damage: " << power<<" Accuracy: " << accuracy << " PP: "<< pp<<"/"<<pp_MAX<< endl;
+        cout<<"(Electric) | "<<name<<" | Base Damage: " << power<<" | Accuracy: " << accuracy << " | PP: "<< pp<<"/"<<pp_MAX<< " |";
     else if(type == Normal)
-        cout<<"(Normal) "<<name<<" Base Damage: " << power<<" Accuracy: " << accuracy << " PP: "<< pp<<"/"<<pp_MAX<< endl;
+        cout<<"(Normal) | "<<name<<" | Base Damage: " << power<<" | Accuracy: " << accuracy << " | PP: "<< pp<<"/"<<pp_MAX<< " |";
     else if(type == Dragon)
-        cout<<"(Dragon) "<<name<<" Base Damage: " << power<<" Accuracy: " << accuracy << " PP: "<< pp<<"/"<<pp_MAX<< endl;
+        cout<<"(Dragon) | "<<name<<" | Base Damage: " << power<<" | Accuracy: " << accuracy << " | PP: "<< pp<<"/"<<pp_MAX<< " |";
     else if(type == Ghost)
-        cout<<"(Ghost) "<<name<<" Base Damage: " << power<<" Accuracy: " << accuracy << " PP: "<< pp<<"/"<<pp_MAX<< endl;
+        cout<<"(Ghost) | "<<name<<" | Base Damage: " << power<<" | Accuracy: " << accuracy << " | PP: "<< pp<<"/"<<pp_MAX<< " |";
     else if(type == Rock)
-        cout<<"(Rock) "<<name<<" Base Damage: " << power<<" Accuracy: " << accuracy << " PP: "<< pp<<"/"<<pp_MAX<< endl;
+        cout<<"(Rock) | "<<name<<" | Base Damage: " << power<<" | Accuracy: " << accuracy << " | PP: "<< pp<<"/"<<pp_MAX<< " |";
     else if(type == Fighting)
-        cout<<"(Fighting) "<<name<<" Base Damage: " << power<<" Accuracy: " << accuracy << " PP: "<< pp<<"/"<<pp_MAX<< endl;
+        cout<<"(Fighting) | "<<name<<" | Base Damage: " << power<<" | Accuracy: " << accuracy << " | PP: "<< pp<<"/"<<pp_MAX<< " |";
     else if(type == Ground)
-        cout<<"(Ground) "<<name<<" Base Damage: " << power<<" Accuracy: " << accuracy << " PP: "<< pp<<"/"<<pp_MAX<< endl;
+        cout<<"(Ground) | "<<name<<" | Base Damage: " << power<<" | Accuracy: " << accuracy << " | PP: "<< pp<<"/"<<pp_MAX<< " |";
     else if(type == Physic)
-        cout<<"(Psychic) "<<name<<" Base Damage: " << power<<" Accuracy: " << accuracy << " PP: "<< pp<<"/"<<pp_MAX<< endl;
+        cout<<"(Psychic) | "<<name<<" | Base Damage: " << power<<" | Accuracy: " << accuracy << " | PP: "<< pp<<"/"<<pp_MAX<< " |";
 }
 
 vector<vector<pkmn_move>> create_moves(){

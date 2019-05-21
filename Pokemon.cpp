@@ -4,7 +4,7 @@
 
 #include "Pokemon.h"
 
-Pokemon :: Pokemon(string pkmn, vector<pkmn_move>& move_set, int _type, int _type2,int HP,int Atk, int Def, int SPa, int SPdf, int Spd) {
+Pokemon :: Pokemon(string pkmn, vector<pkmn_move>& move_set, int _type, int _type2,int HP,int Atk, int Def, int SPa, int SPdf, int Spd,int pkdx) {
     moves = move_set;
     name = pkmn;
     type = _type;
@@ -16,6 +16,7 @@ Pokemon :: Pokemon(string pkmn, vector<pkmn_move>& move_set, int _type, int _typ
     Base_SPattack = SPa;
     Base_SPdefence = SPdf;
     Base_Speed = Spd;
+    pokedex = pkdx;
     level = (rand()%30) +70;
 }
 
@@ -85,19 +86,68 @@ void Pokemon ::printDetails() {
 }
 
 void Pokemon :: printSimple() {
-    cout<<"Level " << level<< " " << name<<endl;
+    int spaceTotal = 59;
+    cout<<"---------------------------------------------------------------------------------"<<endl;
+    cout<<"           Level " << level<< " " << name;
+    for(int i = 0;i<spaceTotal-name.length();i++){
+        cout<<" ";
+    }
+    cout<<endl;
+    cout<<"           Health: "<<health<<"/"<<Base_health;
+    for(int i = 0;i<spaceTotal-6;i++){
+        cout<<" ";
+    }
+    cout<<endl;
     this->printMoves();
-    cout<<"Health: "<<health<<"/"<<Base_health<<endl;
+    cout<<"---------------------------------------------------------------------------------"<<endl;
+
+}
+void Pokemon ::printSimple_() {
+    int spaceTotal = 59;
+    cout<<"---------------------------------------------------------------------------------"<<endl;
+    cout<<"           Level " << level<< " " << name;
+    for(int i = 0;i<spaceTotal-name.length();i++){
+        cout<<" ";
+    }
+    cout<<endl;
+    cout<<"           Health: "<<health<<"/"<<Base_health;
+    for(int i = 0;i<spaceTotal-6;i++){
+        cout<<" ";
+    }
+    cout<<endl;
+    this->printMovesSimple();
+    cout<<"---------------------------------------------------------------------------------"<<endl;
+
 }
 
 void Pokemon ::printCPU() {
-    cout<<"Level " << level<< " " << name<<endl;
-    cout<<"Health: "<<health<<"/"<<Base_health<<endl;
+    int spaceTotal = 18;
+    cout<<"----------------------------------------"<<endl;
+    cout<<"|           Level " << level<< " " << name;
+    for(int i = 0;i<spaceTotal-name.length();i++){
+        cout<<" ";
+    }
+    cout<<"|"<<endl;
+    cout<<"|           Health: "<<health<<"/"<<Base_health;
+    for(int i = 0;i<spaceTotal-6;i++){
+        cout<<" ";
+    }
+    cout<<"|"<<endl;
+    cout<<"----------------------------------------"<<endl;
 }
 
 void Pokemon ::printMoves() {
     for(int i = 0;i<4;i++){
+        cout<<"           ";
         moves[i].print();
+        cout<<endl;
+    }
+}
+void Pokemon ::printMovesSimple() {
+    for(int i = 0;i<4;i++){
+        cout<<"           ";
+        moves[i].printSimple();
+        cout<<endl;
     }
 }
 
@@ -168,7 +218,7 @@ Pokemon pkmn_generate(string name){
             moves_set.push_back(possibleMoves [r]);
             possibleMoves.erase(possibleMoves.begin()+r);
         }
-        Pokemon Charizard("Charizard",moves_set,Fire,Flying,rand()%94+266,rand()%138+155,rand()%136+144,rand()%148+200,rand()%138+157,rand()%144+184);
+        Pokemon Charizard("Charizard",moves_set,Fire,Flying,rand()%94+266,rand()%138+155,rand()%136+144,rand()%148+200,rand()%138+157,rand()%144+184,6);
         return Charizard;
     }
     else if(name == "BLASTOISE" || name == "3"){
@@ -188,7 +238,7 @@ Pokemon pkmn_generate(string name){
             moves_set.push_back(possibleMoves[r]);
             possibleMoves.erase(possibleMoves.begin()+r);
         }
-        Pokemon Blastoise("Blastoise",moves_set,Water,-1,rand()%94+268,rand()%138+153,rand()%144+184,rand()%138+157,rand()%146+193,rand()%136+144);
+        Pokemon Blastoise("Blastoise",moves_set,Water,-1,rand()%94+268,rand()%138+153,rand()%144+184,rand()%138+157,rand()%146+193,rand()%136+144,9);
         return Blastoise;
     }
     else if(name == "VENUSAUR" || name == "1"){
@@ -208,7 +258,7 @@ Pokemon pkmn_generate(string name){
             moves_set.push_back(possibleMoves[r]);
             possibleMoves.erase(possibleMoves.begin()+r);
         }
-        Pokemon Venusaur("Venusaur",moves_set,Grass,Poison,rand()%94+270,rand()%137+152,rand()%138+153,rand()%144+184,rand()%144+184,rand()%136+148);
+        Pokemon Venusaur("Venusaur",moves_set,Grass,Poison,rand()%94+270,rand()%137+152,rand()%138+153,rand()%144+184,rand()%144+184,rand()%136+148,3);
         return Venusaur;
     }
     else if(name == "PIKACHU" || name =="4"){
@@ -226,7 +276,7 @@ Pokemon pkmn_generate(string name){
             moves_set.push_back(possibleMoves[r]);
             possibleMoves.erase(possibleMoves.begin()+r);
         }
-        Pokemon Pikachu("Pikachu",moves_set,Electric,-1,rand()%84+205,rand()%100+290,rand()%144+90,rand()%94+290,rand()%144+80,rand()%144+250);
+        Pokemon Pikachu("Pikachu",moves_set,Electric,-1,rand()%84+205,rand()%100+290,rand()%144+90,rand()%94+290,rand()%144+80,rand()%144+250,25);
         return Pikachu;
     }
     else if(name == "PIGEOT" || name == "5"){
@@ -243,7 +293,7 @@ Pokemon pkmn_generate(string name){
             moves_set.push_back(possibleMoves[r]);
             possibleMoves.erase(possibleMoves.begin()+r);
         }
-        Pokemon Pigeot("Pigeot",moves_set,Flying,Normal,rand()%94+276,rand()%136+148,rand()%134+139,rand()%132+130,rand()%132+130,rand()%145+186);
+        Pokemon Pigeot("Pigeot",moves_set,Flying,Normal,rand()%94+276,rand()%136+148,rand()%134+139,rand()%132+130,rand()%132+130,rand()%145+186,18);
         return Pigeot;
     }
     else if(name == "NIDOKING" || name == "6"){
@@ -264,7 +314,7 @@ Pokemon pkmn_generate(string name){
             moves_set.push_back(possibleMoves[r]);
             possibleMoves.erase(possibleMoves.begin()+r);
         }
-        Pokemon Nidoking("Nidoking",moves_set,Ground,Poison,rand()%94+272,rand()%155+188,rand()%125+143,rand()%138+157,rand()%134+139,rand()%138+157);
+        Pokemon Nidoking("Nidoking",moves_set,Ground,Poison,rand()%94+272,rand()%155+188,rand()%125+143,rand()%138+157,rand()%134+139,rand()%138+157,34);
         return Nidoking;
     }
     else if(name == "NIDOQUEEN" || name == "7"){
@@ -285,7 +335,7 @@ Pokemon pkmn_generate(string name){
             moves_set.push_back(possibleMoves[r]);
             possibleMoves.erase(possibleMoves.begin()+r);
         }
-        Pokemon Nidoq("Nidoqueen",moves_set,Ground,Poison,rand()%94+272,rand()%138+157,rand()%134+139,rand()%155+188,rand()%125+143,rand()%138+157);
+        Pokemon Nidoq("Nidoqueen",moves_set,Ground,Poison,rand()%94+272,rand()%138+157,rand()%134+139,rand()%155+188,rand()%125+143,rand()%138+157,31);
         return Nidoq;
 
     }
@@ -304,7 +354,7 @@ Pokemon pkmn_generate(string name){
             moves_set.push_back(possibleMoves[r]);
             possibleMoves.erase(possibleMoves.begin()+r);
         }
-        Pokemon Machamp("Machamp",moves_set,Fighting,-1,rand()%94+220,rand()%148+238,rand()%134+148,rand()%135+121,rand()%135+157,rand()%118+103);
+        Pokemon Machamp("Machamp",moves_set,Fighting,-1,rand()%94+220,rand()%148+238,rand()%134+148,rand()%135+121,rand()%135+157,rand()%118+103,68);
         return Machamp;
 
     }
@@ -322,7 +372,7 @@ Pokemon pkmn_generate(string name){
             moves_set.push_back(possibleMoves[r]);
             possibleMoves.erase(possibleMoves.begin()+r);
         }
-        Pokemon Golem("Golem",moves_set,Rock,Ground,rand()%94+270,rand()%148+220,rand()%134+248,rand()%135+103,rand()%135+121,rand()%118+85);
+        Pokemon Golem("Golem",moves_set,Rock,Ground,rand()%94+270,rand()%148+220,rand()%134+248,rand()%135+103,rand()%135+121,rand()%118+85,76);
         return Golem;
 
     }
@@ -339,7 +389,7 @@ Pokemon pkmn_generate(string name){
             moves_set.push_back(possibleMoves[r]);
             possibleMoves.erase(possibleMoves.begin()+r);
         }
-        Pokemon Muk("Muk",moves_set,Poison,-1,rand()%105+320,rand()%125+193,rand()%134+139,rand()%135+121,rand()%155+184,rand()%118+85);
+        Pokemon Muk("Muk",moves_set,Poison,-1,rand()%105+320,rand()%125+193,rand()%134+139,rand()%135+121,rand()%155+184,rand()%118+85,89);
         return Muk;
 
     }
@@ -362,7 +412,7 @@ Pokemon pkmn_generate(string name){
             moves_set.push_back(possibleMoves[r]);
             possibleMoves.erase(possibleMoves.begin()+r);
         }
-        Pokemon Gengar("Gengar",moves_set,Ghost,Poison,rand()%96+230,rand()%130+121,rand()%138+112,rand()%156+238,rand()%144+139,rand()%148+202);
+        Pokemon Gengar("Gengar",moves_set,Ghost,Poison,rand()%96+230,rand()%130+121,rand()%138+112,rand()%156+238,rand()%144+139,rand()%148+202,94);
         return Gengar;
 
     }
@@ -379,7 +429,7 @@ Pokemon pkmn_generate(string name){
             moves_set.push_back(possibleMoves[r]);
             possibleMoves.erase(possibleMoves.begin()+r);
         }
-        Pokemon Alakazam("Alakazam",moves_set,Physic,-1,rand()%96+220,rand()%124+94,rand()%120+85,rand()%165+247,rand()%140+175,rand()%152+220);
+        Pokemon Alakazam("Alakazam",moves_set,Physic,-1,rand()%96+220,rand()%124+94,rand()%120+85,rand()%165+247,rand()%140+175,rand()%152+220,65);
         return Alakazam;
 
     }
@@ -404,7 +454,7 @@ Pokemon pkmn_generate(string name){
             moves_set.push_back(possibleMoves[r]);
             possibleMoves.erase(possibleMoves.begin()+r);
         }
-        Pokemon s("Snorlax",moves_set,Normal,-1,rand()%96+430,rand()%148+202,rand()%130+121,rand()%130+121,rand()%148+202,rand()%118+54);
+        Pokemon s("Snorlax",moves_set,Normal,-1,rand()%96+430,rand()%148+202,rand()%130+121,rand()%130+121,rand()%148+202,rand()%118+54,143);
         return s;
     }
     else if(name == "DRAGONITE" || name == "14"){
@@ -428,7 +478,7 @@ Pokemon pkmn_generate(string name){
             moves_set.push_back(possibleMoves[r]);
             possibleMoves.erase(possibleMoves.begin()+r);
         }
-        Pokemon d("Dragonite",moves_set,Dragon,Flying,rand()%96+292,rand()%168+245,rand()%148+175,rand()%142+184,rand()%142+184,rand()%136+148);
+        Pokemon d("Dragonite",moves_set,Dragon,Flying,rand()%96+292,rand()%168+245,rand()%148+175,rand()%142+184,rand()%142+184,rand()%136+148,149);
         return d;
 
     }
@@ -446,14 +496,14 @@ Pokemon pkmn_generate(string name){
             moves_set.push_back(possibleMoves[r]);
             possibleMoves.erase(possibleMoves.begin()+r);
         }
-        Pokemon m("Mewtwo",moves_set,Physic,-1,rand()%96+322,rand()%168+202,rand()%148+166,rand()%162+281,rand()%142+166,rand()%136+238);
+        Pokemon m("Mewtwo",moves_set,Physic,-1,rand()%96+322,rand()%168+202,rand()%148+166,rand()%162+281,rand()%142+166,rand()%136+238,150);
         return m;
 
     }
     else{
         cout<<"Sorry that is not a valid input try again" << endl;
         vector<pkmn_move> nulll;
-        Pokemon null("null",nulll,0,0,0,0,0,0,0,0);
+        Pokemon null("null",nulll,0,0,0,0,0,0,0,0,0);
         return null;
     }
 }
@@ -571,4 +621,27 @@ bool type_disadvantage(int type1,int type2){
             return true;
         return false;
     }
+}
+bool type_noeffect(int type1,int type2){
+    if(type1 == Electric){
+        if(type2 == Ground)
+            return true;
+    }
+    if(type1 == Fighting){
+        if(type2 == Ghost)
+            return true;
+    }
+    if(type1 == Ghost){
+        if(type2 == Normal || type2 == Physic)
+            return true;
+    }
+    if(type1 == Ground){
+        if(type2 == Flying)
+            return true;
+    }
+    if(type1 == Normal){
+        if(type2 == Ghost)
+            return true;
+    }
+    return false;
 }

@@ -4,6 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
+  "C:/Users/viraj parikh/CLionProjects/Pokemon C++/Battle.cpp" "C:/Users/viraj parikh/CLionProjects/Pokemon C++/cmake-build-debug/CMakeFiles/untitled.dir/Battle.cpp.obj"
   "C:/Users/viraj parikh/CLionProjects/Pokemon C++/Pokemon.cpp" "C:/Users/viraj parikh/CLionProjects/Pokemon C++/cmake-build-debug/CMakeFiles/untitled.dir/Pokemon.cpp.obj"
   "C:/Users/viraj parikh/CLionProjects/Pokemon C++/main.cpp" "C:/Users/viraj parikh/CLionProjects/Pokemon C++/cmake-build-debug/CMakeFiles/untitled.dir/main.cpp.obj"
   "C:/Users/viraj parikh/CLionProjects/Pokemon C++/move.cpp" "C:/Users/viraj parikh/CLionProjects/Pokemon C++/cmake-build-debug/CMakeFiles/untitled.dir/move.cpp.obj"

@@ -22,12 +22,15 @@ public:
     pkmn_move(int t,int damage,string n,int acc, int num, bool sp);
     pkmn_move(int t,int damage,string n,int acc, int num);
     void print();
+    void printSimple();
 
     int move_type(){return type;}
     int move_power(){return power;}
     int move_accuracy(){return accuracy;}
     int move_pp(){return pp;}
     void move_use() {pp--;}
+    bool specialS(){return special;}
+
     string move_name(){return name;}
 };
 

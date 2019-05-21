@@ -3,4 +3,4 @@ project(untitled)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(untitled main.cpp Pokemon.cpp Pokemon.h move.cpp move.h)
+add_executable(untitled main.cpp Pokemon.cpp Pokemon.h move.cpp move.h Images.h Battle.cpp Battle.h)

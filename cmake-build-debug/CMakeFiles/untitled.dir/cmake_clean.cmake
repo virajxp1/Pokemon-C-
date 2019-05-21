@@ -2,6 +2,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/untitled.dir/main.cpp.obj"
   "CMakeFiles/untitled.dir/Pokemon.cpp.obj"
   "CMakeFiles/untitled.dir/move.cpp.obj"
+  "CMakeFiles/untitled.dir/Battle.cpp.obj"
   "untitled.pdb"
   "untitled.exe"
   "untitled.exe.manifest"

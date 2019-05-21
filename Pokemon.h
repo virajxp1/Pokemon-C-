@@ -10,7 +10,6 @@
 
 class Pokemon {
     string name;
-    vector <pkmn_move> moves;
     int type;
     int type2;
     int level;
@@ -21,14 +20,18 @@ class Pokemon {
     int Base_SPdefence;
     int Base_Speed;
     int health;
+    int pokedex;
 
 public:
+    vector <pkmn_move> moves;
     Pokemon(){}
-    Pokemon(string pkmn, vector<pkmn_move>& move_set, int _type, int _type2,int HP,int Atk, int Def, int SPa, int SPdf, int Spd);
+    Pokemon(string pkmn, vector<pkmn_move>& move_set, int _type, int _type2,int HP,int Atk, int Def, int SPa, int SPdf, int Spd,int pkdx);
     void printDetails();
     void printSimple();
+    void printSimple_();
     void printCPU();
     void printMoves();
+    void printMovesSimple();
     void damage(int d){health -= d;}
     string pkmn_name() {return name;}
     int pkmn_type(){return type;}
@@ -39,6 +42,8 @@ public:
     int pkmn_defence(){return Base_defence;}
     int pkmn_spdefence(){return Base_SPdefence;}
     int speed(){return Base_Speed;}
+    int pkdx(){return pokedex;}
+    int health_() {return health;}
 };
 
 bool choose_pokemon(Pokemon& mypkmn);
@@ -47,6 +52,7 @@ Pokemon pkmn_generate(string name);
 
 bool type_advantage(int type1,int type2);
 bool type_disadvantage(int type1,int type2);
+bool type_noeffect(int type1,int type2);
 
 
 #endif //UNTITLED_POKEMON_H
