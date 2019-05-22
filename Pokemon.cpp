@@ -583,7 +583,7 @@ bool type_advantage(int type1,int type2){
     }
 }
 bool type_disadvantage(int type1,int type2){
-    if(type1 != Dragon){
+    if(type1 != Dragon && type1 != Normal){
         if(type1 == type2)
             return true;
     }
@@ -613,7 +613,7 @@ bool type_disadvantage(int type1,int type2){
         return false;
     }
     if(type1 == Grass){
-        if(type2 == Fire || type2 == Flying || type2 == Grass || type2 == Poison)
+        if(type2 == Fire || type2 == Flying || type2 == Grass || type2 == Poison || type2 == Electric)
             return true;
         return false;
     }

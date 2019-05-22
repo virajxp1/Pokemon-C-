@@ -12,7 +12,9 @@ void Battle(Pokemon myPkmn, Pokemon cpuPkmn){
     delay(INT32_MAX/2);
     cout<<"\n\nGo "<<myPkmn.pkmn_name()<<" I choose you!"<<endl;
     print_pokemon(myPkmn.pkdx());
+    delay(INT32_MAX/4);
     myPkmn.printSimple_();
+    delay(INT32_MAX/32);
     int moveNumber = 1;
     while(myPkmn.health_() > 0 && cpuPkmn.health_() > 0){
         printMovenum(moveNumber);

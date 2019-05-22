@@ -45,18 +45,6 @@ int main() {
     system("PAUSE");
     cout<<(string(50,'\n'));
     Battle(myPkmn,CPU_pkmn);
-    /*
-     * Next step:
-     * create battle sequence:
-     * "Go Pokemon"
-     * "Your opponent sent out ..."
-     * First Ascii art to draw pokemon each round
-     * Square around the moves to make it look nice
-     * options to select each move
-     * Pkmn used x ... (its super/not very /not at all effective)
-     * it did x damage
-     * "Press enter to continue"
-     * repeat
-     */
+    system("PAUSE");
 }
 
