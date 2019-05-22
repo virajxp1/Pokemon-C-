@@ -121,6 +121,7 @@ void Pokemon ::printSimple_() {
 }
 
 void Pokemon ::printCPU() {
+    if(health<0){health=0;}
     int spaceTotal = 18;
     cout<<"----------------------------------------"<<endl;
     cout<<"|           Level " << level<< " " << name;
@@ -509,6 +510,20 @@ Pokemon pkmn_generate(string name){
 }
 
 bool type_advantage(int type1,int type2){
+    if(type1 != Dragon){
+        if(type1 == type2)
+            return false;
+    }
+    if(type1 == Fire){
+        if(type2 == Grass)
+            return true;
+        return false;
+    }
+    if(type1 == Flying){
+        if(type2 == Grass || type2 == Fighting)
+            return true;
+        return false;
+    }
     if(type1 == Grass){
         if(type2 == Ground || type2 == Rock || type2 == Water){
             return true;
@@ -516,6 +531,8 @@ bool type_advantage(int type1,int type2){
         return false;
     }
     if(type1 == Dragon){
+        if(type2 == Dragon)
+            return true;
         return false;
     }
     if(type1 == Electric){
@@ -534,7 +551,7 @@ bool type_advantage(int type1,int type2){
         return false;
     }
     if(type1 == Ground){
-        if(type2 == Electric || type2 == Fire || type2 == Poison || type2 == Rock){
+        if(type2 == Electric || type2 == Fire || type2 == Poison || type2 == Rock || type2 == Water){
             return true;
         }
         return false;
@@ -566,20 +583,27 @@ bool type_advantage(int type1,int type2){
     }
 }
 bool type_disadvantage(int type1,int type2){
+    if(type1 != Dragon){
+        if(type1 == type2)
+            return true;
+    }
     if(type1 == Electric){
         if(type2 == Electric || type2 == Grass)
             return true;
         return false;
     }
-    if(type1 == Dragon)
+    if(type1 == Dragon) {
+        if (type2 == Dragon)
+            return true;
         return false;
+    }
     if(type1 == Fighting){
         if(type2 == Flying || type2 == Physic)
             return true;
         return false;
     }
     if(type1 == Fire){
-        if(type2 == Rock || type2 == Water)
+        if(type2 == Rock || type2 == Water || type2 == Fire)
             return true;
         return false;
     }
@@ -618,6 +642,11 @@ bool type_disadvantage(int type1,int type2){
     }
     if(type1 == Water){
         if(type2 == Grass)
+            return true;
+        return false;
+    }
+    if(type1 == Ghost){
+        if(type2 ==Ghost)
             return true;
         return false;
     }

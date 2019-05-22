@@ -9,8 +9,12 @@
 #include "move.h"
 
 void Battle(Pokemon myPkmn, Pokemon cpuPkmn);
-void BattleLoop(Pokemon& my, Pokemon& cpu);
+void BattleLoopMy(Pokemon& my, Pokemon& cpu);
+void BattleLoopCpu(Pokemon& my, Pokemon& cpu);
+void Battleloop(Pokemon& my, Pokemon& cpu,string input);
 void printMovenum(int n);
 void print_pokemon(int n_pokemon);
 
 #endif //UNTITLED_BATTLE_H
+
+//type ad missing fire type dis missiong normal

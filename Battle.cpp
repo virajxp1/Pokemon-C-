@@ -14,183 +14,376 @@ void Battle(Pokemon myPkmn, Pokemon cpuPkmn){
     print_pokemon(myPkmn.pkdx());
     myPkmn.printSimple_();
     int moveNumber = 1;
-    while(myPkmn.health_() != 0 && cpuPkmn.health_() != 0){
+    while(myPkmn.health_() > 0 && cpuPkmn.health_() > 0){
         printMovenum(moveNumber);
-        BattleLoop(myPkmn,cpuPkmn);
-        cpuPkmn.printCPU();
-        myPkmn.printSimple_();
+        if(myPkmn.speed()>cpuPkmn.speed()){
+            BattleLoopMy(myPkmn,cpuPkmn);
+            cpuPkmn.printCPU();
+            if(cpuPkmn.health_()<=0)
+                break;
+            BattleLoopCpu(myPkmn,cpuPkmn);
+            myPkmn.printCPU();
+            moveNumber++;
+        }
+        else{
+            BattleLoopCpu(myPkmn,cpuPkmn);
+            myPkmn.printCPU();
+            if(myPkmn.health_()<=0)
+                break;
+            BattleLoopMy(myPkmn,cpuPkmn);
+            cpuPkmn.printCPU();
+            moveNumber++;
+        }
+    }
+    if(myPkmn.health_() >0 && cpuPkmn.health_()<=0){
+        cout<<cpuPkmn.pkmn_name()<<" Fainted...Battle over you win!"<<endl;
+    }
+    else{
+        cout<<myPkmn.pkmn_name()<<" Fainted...Battle over try again next time"<<endl;
     }
 }
 
-void BattleLoop(Pokemon& my, Pokemon& cpu){
-    // fix damage through debuging
-    // struggle implement
-    // accuracy implement
-    // speed implement
+void BattleLoopMy(Pokemon& my, Pokemon& cpu) {
+    // fix type effectiveness
     string input;
-    cout<<"1 -> "<<my.moves[0].move_name()<<endl;
-    cout<<"2 -> "<<my.moves[1].move_name()<<endl;
-    cout<<"3 -> "<<my.moves[2].move_name()<<endl;
-    cout<<"4 -> "<<my.moves[3].move_name()<<endl;
-    cout<<"5 -> Detailed Move Information"<<endl;
-    cout<<"6 -> Detailed Pokemon Stats"<<endl;
-    cin>>input;
-    if(input == "1"){
-        auto current = my.moves[0];
-        if(my.moves[0].move_pp() <= 0){
-            cout<<"This move has no PP left select a different move";
-            BattleLoop(my,cpu);
+    cout << "1 -> " << my.moves[0].move_name() << endl;
+    cout << "2 -> " << my.moves[1].move_name() << endl;
+    cout << "3 -> " << my.moves[2].move_name() << endl;
+    cout << "4 -> " << my.moves[3].move_name() << endl;
+    cout << "5 -> Detailed Move Information" << endl;
+    cout << "6 -> Detailed Pokemon Stats" << endl;
+    cin >> input;
+    Battleloop(my,cpu,input);
+}
+
+
+void BattleLoopCpu(Pokemon& my, Pokemon& cpu){
+    int num = 1;
+    bool flag = false;
+    auto current = cpu.moves[num-1];
+    // pick a move with type advantage if possible
+    if(type_advantage(cpu.moves[0].move_type(),my.pkmn_type())|| type_advantage(cpu.moves[0].move_type(),my.pkmn_type())){
+        if(cpu.moves[0].move_power()*2 >= current.move_power()){
+            num = 1;
+            current =cpu.moves[num-1];
+            flag = true;
+        }
+    }
+    if(type_advantage(cpu.moves[1].move_type(),my.pkmn_type())|| type_advantage(cpu.moves[1].move_type(),my.pkmn_type())){
+        if(cpu.moves[1].move_power()*2 >= current.move_power()){
+            num = 2;
+            current =cpu.moves[num-1];
+            flag = true;
+        }
+    }
+    if(type_advantage(cpu.moves[2].move_type(),my.pkmn_type())|| type_advantage(cpu.moves[2].move_type(),my.pkmn_type())){
+        if(cpu.moves[2].move_power()*2 >= current.move_power()){
+            num = 3;
+            current =cpu.moves[num-1];
+            flag = true;
+        }
+    }
+    if(type_advantage(cpu.moves[3].move_type(),my.pkmn_type())|| type_advantage(cpu.moves[3].move_type(),my.pkmn_type())){
+        if(cpu.moves[3].move_power()*2 >= current.move_power()){
+            num = 4;
+            current =cpu.moves[num-1];
+            flag = true;
+        }
+    }
+
+    //else pick a move with no type disadvantage
+    if(!flag){
+        if(!(type_disadvantage(cpu.moves[0].move_type(),my.pkmn_type())|| type_disadvantage(cpu.moves[0].move_type(),my.pkmn_type()))){
+            if(cpu.moves[0].move_power()*.25 >= current.move_power()){
+                num = 1;
+                current =cpu.moves[num-1];
+                flag = true;
+            }
+        }
+        if(!(type_disadvantage(cpu.moves[1].move_type(),my.pkmn_type())|| type_disadvantage(cpu.moves[1].move_type(),my.pkmn_type()))){
+            if(cpu.moves[1].move_power()*2 >= current.move_power()){
+                num = 2;
+                current =cpu.moves[num-1];
+                flag = true;
+            }
+        }
+        if(!(type_disadvantage(cpu.moves[2].move_type(),my.pkmn_type())|| type_disadvantage(cpu.moves[2].move_type(),my.pkmn_type()))){
+            if(cpu.moves[2].move_power()*2 >= current.move_power()){
+                num = 3;
+                current =cpu.moves[num-1];
+                flag = true;
+            }
+        }
+        if(!(type_disadvantage(cpu.moves[3].move_type(),my.pkmn_type())|| type_disadvantage(cpu.moves[3].move_type(),my.pkmn_type()))){
+            if(cpu.moves[3].move_power()*2 >= current.move_power()){
+                num = 4;
+                current =cpu.moves[num-1];
+                flag = true;
+            }
+        }
+    }
+
+    //else pick move with most power
+
+    if(!flag){
+        if(cpu.moves[0].move_power() >= current.move_power()){
+            num = 1;
+            current =cpu.moves[num-1];
+            flag = true;
+        }
+        if(cpu.moves[1].move_power() >= current.move_power()){
+            num = 2;
+            current =cpu.moves[num-1];
+            flag = true;
+        }
+        if(cpu.moves[2].move_power() >= current.move_power()){
+            num = 3;
+            current =cpu.moves[num-1];
+            flag = true;
+        }
+        if(cpu.moves[3].move_power() >= current.move_power()){
+            num = 4;
+            current =cpu.moves[num-1];
+            flag = true;
+        }
+    }
+    //else pick move with most power else pick random move
+
+    int random = rand()%2;
+    if(!flag ||random || (type_noeffect(current.move_type(),my.pkmn_type()) || type_noeffect(current.move_type(),my.pkmn_type2()))){
+        num = rand()%4+1;
+    }
+    string input = to_string(num);
+    Battleloop(cpu,my,input);
+}
+
+
+void Battleloop(Pokemon& my, Pokemon& cpu,string input){
+    if(my.moves[0].move_pp() == 0 && my.moves[1].move_pp() ==0 && my.moves[2].move_pp() ==0 && my.moves[3].move_pp() ==0){
+        if(input != "5" && input != "6"){
+            cout<<my.pkmn_name()<<" is out of moves with PP ... "<<my.pkmn_name() <<"used struggle";
+            cpu.damage(5);
             return;
         }
-        double modifiers;
-        cout<<my.pkmn_name()<<" used "<<my.moves[0].move_name()<<endl;
-        int type1 = my.moves[0].move_type();
+    }
+    if(input == "1"){
+        auto current = my.moves[0];
+        if(current.move_pp() <= 0){
+            cout<<"This move has no PP left select a different move";
+            BattleLoopMy(my,cpu);
+            return;
+        }
+        double modifiers = 1;
+        int accuracy = rand()%100+1;
+        cout<<my.pkmn_name()<<" used "<<current.move_name()<<endl;
+        int type1 = current.move_type();
         int type2 = cpu.pkmn_type();
-        if(type_advantage(type2,type1)){
+        int type3 = cpu.pkmn_type2();
+        if(type3 == -1){type3 = type2;}
+        if(accuracy>current.move_accuracy()){
+            cout<<"The attack missed"<<endl;
+            return;
+        }
+        if((type_advantage(type1,type2) && type_disadvantage(type1,type3)) || (type_advantage(type1,type3) && type_disadvantage(type1,type2))){
+            modifiers = 1;
+        }
+        else if(type_advantage(type1,type2) || type_advantage(type1,type3)){
             modifiers = 2;
             cout<<"It was super effective" << endl;
         }
-        else if(type_disadvantage(type2,type1)){
-            modifiers = 1/2;
+        else if(type_disadvantage(type1,type2) || type_disadvantage(type1,type3)){
+            modifiers = .25;
             cout<<"It was not very effective" << endl;
         }
-        else if(type_noeffect(type2,type1)){
+        else if(type_noeffect(type1,type2) || type_noeffect(type1,type3)){
             modifiers = 0;
             cout<<cpu.pkmn_name()<<" is not effected by this move"<<endl;
         }
-        if(my.moves[0].specialS()){
-            int dmg = (((2*my.pkmn_level())/5)+2)*my.moves[0].move_power()*(my.pkmn_spattack()/cpu.pkmn_spdefence())*modifiers;
+        if(current.specialS()){
+            double pwr = (double)current.move_power()*1.0;
+            double ratio = (double)my.pkmn_spattack()/(double)cpu.pkmn_spdefence()*1.0;
+            double lvl = (double)my.pkmn_level()/70*1.0;
+            double dmg = pwr*ratio*lvl*modifiers*.85;
             my.moves[0].move_use();
             cpu.damage(dmg);
-            cout<<cpu.health_();
         }
         else{
-            int dmg = (((2*my.pkmn_level())/5)+2)*my.moves[0].move_power()*(my.pkmn_attack()/cpu.pkmn_defence())*modifiers;
+            double pwr = (double)current.move_power()*1.0;
+            double ratio = (double)my.pkmn_attack()/(double)cpu.pkmn_defence()*1.0;
+            double lvl = (double)my.pkmn_level()/70*1.0;
+            double dmg = pwr*ratio*lvl*modifiers*.85;
             my.moves[0].move_use();
             cpu.damage(dmg);
-            cout<<cpu.health_();
         }
     }
     else if(input == "2"){
-        if(my.moves[1].move_pp() <= 0){
+        auto current = my.moves[1];
+        if(current.move_pp() <= 0){
             cout<<"This move has no PP left select a different move";
-            BattleLoop(my,cpu);
+            BattleLoopMy(my,cpu);
             return;
         }
-        double modifiers;
-        cout<<my.pkmn_name()<<" used "<<my.moves[1].move_name()<<endl;
-        int type1 = my.moves[1].move_type();
+        double modifiers = 1;
+        int accuracy = rand()%100+1;
+        cout<<my.pkmn_name()<<" used "<<current.move_name()<<endl;
+        int type1 = current.move_type();
         int type2 = cpu.pkmn_type();
-        if(type_advantage(type2,type1)){
+        int type3 = cpu.pkmn_type2();
+        if(type3 == -1){type3 = type2;}
+        if(accuracy>current.move_accuracy()){
+            cout<<"The attack missed"<<endl;
+            return;
+        }
+        if((type_advantage(type1,type2) && type_disadvantage(type1,type3)) || (type_advantage(type1,type3) && type_disadvantage(type1,type2))){
+            modifiers = 1;
+        }
+        else if(type_advantage(type1,type2) || type_advantage(type1,type3)){
             modifiers = 2;
             cout<<"It was super effective" << endl;
         }
-        else if(type_disadvantage(type2,type1)){
-            modifiers = 1/2;
+        else if(type_disadvantage(type1,type2) || type_disadvantage(type1,type3)){
+            modifiers = .25;
             cout<<"It was not very effective" << endl;
         }
-        else if(type_noeffect(type2,type1)){
+        else if(type_noeffect(type1,type2) || type_noeffect(type1,type3)){
             modifiers = 0;
             cout<<cpu.pkmn_name()<<" is not effected by this move"<<endl;
         }
-        if(my.moves[1].specialS()){
-            int dmg = (((2*my.pkmn_level())/5)+2)*my.moves[1].move_power()*(my.pkmn_spattack()/cpu.pkmn_spdefence())*modifiers;
+        if(current.specialS()){
+            double pwr = (double)current.move_power()*1.0;
+            double ratio = (double)my.pkmn_spattack()/(double)cpu.pkmn_spdefence()*1.0;
+            double lvl = (double)my.pkmn_level()/70*1.0;
+            double dmg = pwr*ratio*lvl*modifiers*.85;
             my.moves[1].move_use();
             cpu.damage(dmg);
         }
         else{
-            int dmg = (((2*my.pkmn_level())/5)+2)*my.moves[1].move_power()*(my.pkmn_attack()/cpu.pkmn_defence())*modifiers;
+            double pwr = (double)current.move_power()*1.0;
+            double ratio = (double)my.pkmn_attack()/(double)cpu.pkmn_defence()*1.0;
+            double lvl = (double)my.pkmn_level()/70*1.0;
+            double dmg = pwr*ratio*lvl*modifiers*.85;
             my.moves[1].move_use();
             cpu.damage(dmg);
         }
 
     }
     else if(input == "3"){
-        if(my.moves[2].move_pp() <= 0){
+        auto current = my.moves[2];
+        if(current.move_pp() <= 0){
             cout<<"This move has no PP left select a different move";
-            BattleLoop(my,cpu);
+            BattleLoopMy(my,cpu);
             return;
         }
-        double modifiers;
-        cout<<my.pkmn_name()<<" used "<<my.moves[2].move_name()<<endl;
-        int type1 = my.moves[2].move_type();
+        double modifiers = 1;
+        int accuracy = rand()%100+1;
+        cout<<my.pkmn_name()<<" used "<<current.move_name()<<endl;
+        int type1 = current.move_type();
         int type2 = cpu.pkmn_type();
-        if(type_advantage(type2,type1)){
+        int type3 = cpu.pkmn_type2();
+        if(type3 == -1){type3 = type2;}
+        if(accuracy>current.move_accuracy()){
+            cout<<"The attack missed"<<endl;
+            return;
+        }
+        if((type_advantage(type1,type2) && type_disadvantage(type1,type3)) || (type_advantage(type1,type3) && type_disadvantage(type1,type2))){
+            modifiers = 1;
+        }
+        else if(type_advantage(type1,type2) || type_advantage(type1,type3)){
             modifiers = 2;
             cout<<"It was super effective" << endl;
         }
-        else if(type_disadvantage(type1,type2)){
-            modifiers = 1/2;
+        else if(type_disadvantage(type1,type2) || type_disadvantage(type1,type3)){
+            modifiers = .25;
             cout<<"It was not very effective" << endl;
         }
-        else if(type_noeffect(type1,type2)){
+        else if(type_noeffect(type1,type2) || type_noeffect(type1,type3)){
             modifiers = 0;
             cout<<cpu.pkmn_name()<<" is not effected by this move"<<endl;
         }
-        if(my.moves[2].specialS()){
-            int dmg = (((2*my.pkmn_level())/5)+2)*my.moves[2].move_power()*(my.pkmn_spattack()/cpu.pkmn_spdefence())*modifiers;
+        if(current.specialS()){
+            double pwr = (double)current.move_power()*1.0;
+            double ratio = (double)my.pkmn_spattack()/(double)cpu.pkmn_spdefence()*1.0;
+            double lvl = (double)my.pkmn_level()/70*1.0;
+            double dmg = pwr*ratio*lvl*modifiers*.85;
             my.moves[2].move_use();
             cpu.damage(dmg);
         }
         else{
-            int dmg = (((2*my.pkmn_level())/5)+2)*my.moves[2].move_power()*(my.pkmn_attack()/cpu.pkmn_defence())*modifiers;
+            double pwr = (double)current.move_power()*1.0;
+            double ratio = (double)my.pkmn_attack()/(double)cpu.pkmn_defence()*1.0;
+            double lvl = (double)my.pkmn_level()/70*1.0;
+            double dmg = pwr*ratio*lvl*modifiers*.85;
             my.moves[2].move_use();
             cpu.damage(dmg);
         }
     }
-    else if(input == "4"){
-        if(my.moves[3].move_pp() <= 0){
-            cout<<"This move has no PP left select a different move";
-            BattleLoop(my,cpu);
+    else if(input == "4") {
+        auto current = my.moves[3];
+        if (current.move_pp() <= 0) {
+            cout << "This move has no PP left select a different move";
+            BattleLoopMy(my, cpu);
             return;
         }
-        double modifiers;
-        cout<<my.pkmn_name()<<" used "<<my.moves[3].move_name()<<endl;
-        int type1 = my.moves[3].move_type();
+        double modifiers = 1;
+        int accuracy = rand() % 100 + 1;
+        cout << my.pkmn_name() << " used " << current.move_name() << endl;
+        int type1 = current.move_type();
         int type2 = cpu.pkmn_type();
-        if(type_advantage(type2,type1)){
+        int type3 = cpu.pkmn_type2();
+        if (type3 == -1) { type3 = type2; }
+        if (accuracy > current.move_accuracy()) {
+            cout << "The attack missed" << endl;
+            return;
+        }
+        if ((type_advantage(type1, type2) && type_disadvantage(type1, type3)) ||
+            (type_advantage(type1, type3) && type_disadvantage(type1, type2))) {
+            modifiers = 1;
+        } else if (type_advantage(type1, type2) || type_advantage(type1, type3)) {
             modifiers = 2;
-            cout<<"It was super effective" << endl;
-        }
-        else if(type_disadvantage(type2,type1)){
-            modifiers = 1/2;
-            cout<<"It was not very effective" << endl;
-        }
-        else if(type_noeffect(type2,type1)){
+            cout << "It was super effective" << endl;
+        } else if (type_disadvantage(type1, type2) || type_disadvantage(type1, type3)) {
+            modifiers = .25;
+            cout << "It was not very effective" << endl;
+        } else if (type_noeffect(type1, type2) || type_noeffect(type1, type3)) {
             modifiers = 0;
-            cout<<cpu.pkmn_name()<<" is not effected by this move"<<endl;
+            cout << cpu.pkmn_name() << " is not effected by this move" << endl;
         }
-        if(my.moves[3].specialS()){
-            int dmg = (((2*my.pkmn_level())/5)+2)*my.moves[3].move_power()*(my.pkmn_spattack()/cpu.pkmn_spdefence())*modifiers;
+        if (current.specialS()) {
+            double pwr = (double) current.move_power() * 1.0;
+            double ratio = (double) my.pkmn_spattack() / (double) cpu.pkmn_spdefence() * 1.0;
+            double lvl = (double) my.pkmn_level() / 70 * 1.0;
+            double dmg = pwr * ratio * lvl * modifiers * .85;
             my.moves[3].move_use();
             cpu.damage(dmg);
-        }
-        else{
-            int dmg = (((2*my.pkmn_level())/5)+2)*my.moves[3].move_power()*(my.pkmn_attack()/cpu.pkmn_defence())*modifiers;
+        } else {
+            double pwr = (double) current.move_power() * 1.0;
+            double ratio = (double) my.pkmn_attack() / (double) cpu.pkmn_defence() * 1.0;
+            double lvl = (double) my.pkmn_level() / 70 * 1.0;
+            double dmg = pwr * ratio * lvl * modifiers * .85;
             my.moves[3].move_use();
             cpu.damage(dmg);
         }
     }
-    else if(input == "5"){
+    else if(input =="5"){
         my.printSimple();
-        cout<<endl;
-        BattleLoop(my,cpu);
+        BattleLoopMy(my,cpu);
     }
     else if(input == "6"){
         my.printDetails();
-        cout<<endl;
-        BattleLoop(my,cpu);
+        BattleLoopMy(my,cpu);
     }
     else{
-        cout<<"Sorry invalid input. Please try again."<<endl;
-        BattleLoop(my,cpu);
+        cout<<"Sorry not a valid input try again";
+        BattleLoopMy(my,cpu);
     }
 }
 
 void printMovenum(int n){
+    cout<<"\n\n";
     cout<<"--------------"<<endl;
     cout<<"Move number: "<<n<<endl;
     cout<<"--------------"<<endl;
+    cout<<"\n\n";
 }
 
 
