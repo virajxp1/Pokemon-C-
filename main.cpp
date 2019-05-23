@@ -44,7 +44,11 @@ int main() {
     while (!(CPU_choosePkmn(CPU_pkmn, myPkmn.pkmn_type())));
     system("PAUSE");
     cout<<(string(50,'\n'));
-    Battle(myPkmn,CPU_pkmn);
+    while(Battle(myPkmn,CPU_pkmn)){
+        while (!(CPU_choosePkmn(CPU_pkmn, myPkmn.pkmn_type())));
+        myPkmn.regenerate();
+        cout<<endl;
+    }
     system("PAUSE");
 }
 

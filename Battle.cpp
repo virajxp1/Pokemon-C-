@@ -5,7 +5,7 @@
 #include "Battle.h"
 #include <stdio.h>
 
-void Battle(Pokemon myPkmn, Pokemon cpuPkmn){
+bool Battle(Pokemon myPkmn, Pokemon cpuPkmn){
     cout<<"Your Opponent sent out "<<cpuPkmn.pkmn_name()<<endl;
     print_pokemon(cpuPkmn.pkdx());
     cpuPkmn.printCPU();
@@ -39,9 +39,11 @@ void Battle(Pokemon myPkmn, Pokemon cpuPkmn){
     }
     if(myPkmn.health_() >0 && cpuPkmn.health_()<=0){
         cout<<cpuPkmn.pkmn_name()<<" Fainted...Battle over you win!"<<endl;
+        return true;
     }
     else{
         cout<<myPkmn.pkmn_name()<<" Fainted...Battle over try again next time"<<endl;
+        return false;
     }
 }
 

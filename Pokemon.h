@@ -44,6 +44,7 @@ public:
     int speed(){return Base_Speed;}
     int pkdx(){return pokedex;}
     int health_() {return health;}
+    void regenerate() {health = Base_health;}
 };
 
 bool choose_pokemon(Pokemon& mypkmn);

@@ -551,7 +551,7 @@ bool type_advantage(int type1,int type2){
         return false;
     }
     if(type1 == Ground){
-        if(type2 == Electric || type2 == Fire || type2 == Poison || type2 == Rock || type2 == Water){
+        if(type2 == Electric || type2 == Fire || type2 == Poison || type2 == Rock){
             return true;
         }
         return false;

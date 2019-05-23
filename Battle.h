@@ -8,7 +8,7 @@
 #include "Pokemon.h"
 #include "move.h"
 
-void Battle(Pokemon myPkmn, Pokemon cpuPkmn);
+bool Battle(Pokemon myPkmn, Pokemon cpuPkmn);
 void BattleLoopMy(Pokemon& my, Pokemon& cpu);
 void BattleLoopCpu(Pokemon& my, Pokemon& cpu);
 void Battleloop(Pokemon& my, Pokemon& cpu,string input);
